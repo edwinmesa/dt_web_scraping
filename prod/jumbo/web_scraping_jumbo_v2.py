@@ -80,5 +80,5 @@ for category in categories:
                            "price_now": price_now, "discount": discount})
 
     df = pd.DataFrame(data_jumbo)
-    df.to_csv(f'C:\workflow\web_scraping_dislicores\prod\jumbo\{category}_data.txt',
+    df.to_csv(f'C:\workflow\web_scraping_dislicores\prod\data\jumbo_{category}_data.txt',
               index=False, encoding='utf-8')
