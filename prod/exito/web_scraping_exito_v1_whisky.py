@@ -1,18 +1,53 @@
+# import libraries
 import time
+import pandas as pd
+from rich import print as rprint
+from rich.pretty import pprint
+from rich.progress import Progress
+import re
+from rich.progress import track
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import pandas as pd
+# ------------------------------------------------------------------
+# TODO: functions
+# ------------------------------------------------------------------
 
+# This function search each element of the document DOM
+def findElementTextBySelector(selector, exception):
+    try:
+        element = i.find_element(
+            By.CSS_SELECTOR, selector).text.strip().upper()
+    except:
+        element = exception
+    return element
+
+def findElementNumberBySelector(selector, exception):
+    try:
+        element = i.find_element(By.CSS_SELECTOR, selector).text.replace('$', '')
+        element = "".join([ch for ch in element if ch.isdigit()])
+    except:
+        element = exception
+    return element
+
+# Function Beatiful View
+def process_data():
+    time.sleep(0.02)
+
+# ----------------------------------------------------------------
+# TODO: add support for the WebDriver
+# ----------------------------------------------------------------
+
+# Bar progress -> comment
+for _ in track(range(100), description='[green]Iniciando Scraping Almacenes EXITO'):
+    process_data()
 # Initialized by selenium driver
 driver = webdriver.Firefox()
 driver.maximize_window()
-
-# Categories used
-categories = ['whisky', 'vino', 'cervezas',
-              'tonica', 'tequilas-y-piscos', 'ron']
+# Categories of brands that should be considered for search results
+categories = ['whisky', 'vino', 'cervezas', 'tequilas-y-piscos', 'ron']
 
 # ----------------------------------------------------------------
 driver.get("https://www.exito.com/")
