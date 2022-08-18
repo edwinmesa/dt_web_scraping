@@ -110,9 +110,9 @@ for city, suc in shops.items():
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 30).until(
+                WebDriverWait(driver, 100).until(
                     EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
-                WebDriverWait(driver, 20).until(
+                WebDriverWait(driver, 30).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
                 time.sleep(10)
