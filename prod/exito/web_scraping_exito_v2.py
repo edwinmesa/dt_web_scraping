@@ -8,6 +8,7 @@ import re
 from rich.progress import track
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -16,6 +17,8 @@ from selenium.common.exceptions import TimeoutException
 # ------------------------------------------------------------------
 
 # This function search each element of the document DOM
+
+
 def findElementTextBySelector(selector, exception):
     try:
         element = i.find_element(
@@ -24,15 +27,32 @@ def findElementTextBySelector(selector, exception):
         element = exception
     return element
 
+
 def findElementNumberBySelector(selector, exception):
     try:
-        element = i.find_element(By.CSS_SELECTOR, selector).text.replace('$', '')
+        element = i.find_element(
+            By.CSS_SELECTOR, selector).text.replace('$', '')
         element = "".join([ch for ch in element if ch.isdigit()])
     except:
         element = exception
     return element
 
+
+def findElementBy(by, selector, t):
+    open_modal = driver.find_element(by, selector)
+    open_modal.click()
+    time.sleep(t)
+
+def findElementByAndSendKey(by, selector, key, t):
+    open_modal = driver.find_element(by, selector)
+    open_modal.click()
+    open_modal.send_keys(key)
+    open_modal.send_keys(Keys.TAB)
+    time.sleep(t)
+
 # Function Beatiful View
+
+
 def process_data():
     time.sleep(0.02)
 
@@ -40,26 +60,62 @@ def process_data():
 # TODO: add support for the WebDriver
 # ----------------------------------------------------------------
 
+
 # Bar progress -> comment
-for _ in track(range(100), description='[green]Iniciando Scraping Almacenes JUMBO'):
+for _ in track(range(100), description='[green]Iniciando Scraping Almacenes EXITO'):
     process_data()
 # Initialized by selenium driver
 driver = webdriver.Firefox()
 driver.maximize_window()
 # Categories of brands that should be considered for search results
-categories = ['whisky', 'vino', 'cervezas', 'tequilas-y-piscos', 'ron']
+categories = ['whisky-ron-brandy-conac', 'vinos',
+              'cervezas', 'tequilas-ginebras-y-vodkas']
+shops = dict([
+    ('Bogotá, D.c.', 'EXITO Calle 80'),
+    ('Medellín', 'Exito Poblado'),
+])
+# ------------------------------------------------------------------
+# TODO: Extract the data for shop EXITO
+# ------------------------------------------------------------------
 
-# ------------------------------------------------------------------
-# TODO: Extract the data for shop JUMBO
-# ------------------------------------------------------------------
 for category in categories:
-    # Bar progress -> comment
-    for _ in track(range(100), description=f'[yellow]Busqueda por la Categoria : {category}'):
-        process_data()
+    # Open the Page
+    driver.get("https://www.exito.com/")
+    time.sleep(10)
 
-    driver.get(
-        f"https://www.tiendasjumbo.co/supermercado/vinos-y-licores/{category}")
-    time.sleep(15)
+    # Open the modal for buy
+    findElementBy(
+        By.XPATH, "//span[@class='exito-geolocation-3-x-addressResult']", 3)
+    # Select for buy
+    findElementBy(
+        By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 3)
+    # Click for city selection
+    findElementBy(
+        By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 3)
+    # List of cities
+    findElementByAndSendKey(
+        By.ID, "react-select-2-input", "Bogotá, D.c.", 3)
+    # Select the city
+    # findElementBy(By.XPATH, "//div[@id='react-select-2-option-0']", 1)
+    # Click for shop selection
+    findElementByAndSendKey(
+        By.ID, "react-select-4-input","EXITO Calle 80", 3)
+    # Select the shop
+    # findElementBy(By.XPATH, "//div[@id='react-select-4-option-0']", 1)
+    # confirm the selection
+    
+    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 10)
+
+    break
+    # Click in menu
+    findElementBy(By.ID, "category-menu", 10)
+    # Click in Grocery
+    findElementBy(By.ID, "undefined-nivel2-Mercado", 10)
+    # Click in Categories
+    findElementBy(
+        By.XPATH, "//p[@id='Categorías-nivel3-Whisky, ron, brandy y coñac']", 15)
+    # Go to end the page
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
     # define the max clicks for page for default 30
@@ -86,34 +142,26 @@ for category in categories:
     items = driver.find_elements(
         By.CSS_SELECTOR,  ".vtex-product-summary-2-x-element.pointer.pt3.pb4.flex.flex-column.h-100")
     # Create a frame empty for the data
-    data_jumbo = []
+    data_exito = []
     # iterate over each element
     for i in items:
         name = findElementTextBySelector(
-            ".vtex-product-summary-2-x-productBrand.vtex-product-summary-2-x-brandName.t-body", "SIN DESCRIPCION")
+            ".vtex-store-components-3-x-productNameContainer.mv0.t-heading-4", "SIN DESCRIPCION")
         brand = findElementTextBySelector(
             ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
-        price_jumbo_prime = findElementNumberBySelector(
-            ".tiendasjumboqaio-jumbo-minicart-2-x-generalPrice.tiendasjumboqaio-jumbo-minicart-2-x-primePrice.tiendasjumboqaio-jumbo-minicart-2-x-generalPriceSmall", "0")
         price_regular = findElementNumberBySelector(
-            ".tiendasjumboqaio-jumbo-minicart-2-x-cencoListPrice", "0")
+            ".exito-vtex-components-4-x-list-price.t-mini.ttn.strike", "0")
         price_now = findElementNumberBySelector(
-            ".flex.c-emphasis.tiendasjumboqaio-jumbo-minicart-2-x-cencoPrice", "0")
+            ".exito-vtex-components-4-x-PricePDP", "0")
         discount = findElementNumberBySelector(
-            ".tiendasjumboqaio-jumbo-minicart-2-x-containerPercentageFlag", "0")
+            ".exito-vtex-components-4-x-badgeDiscount.flex.items-center", "0")
 
-        data_jumbo.append({"shop": "JUMBO", "city": "Medellin", "name": name, "brand": brand, "price_jumbo_prime": price_jumbo_prime, "price_regular": price_regular,
+        data_exito.append({"shop": "EXITO", "city": "Bogota", "location": "Exito Calle 80", "name": name, "brand": brand, "price_jumbo_prime": price_jumbo_prime, "price_regular": price_regular,
                            "price_now": price_now, "discount": discount})
-        # rprint("SKU: " + name,
-        #        "|Marca: " + brand,
-        #        "|Precio Jumbo Prime: " + price_jumbo_prime,
-        #        ",Precio Regular: " + price_regular,
-        #        "|Precio Normal: " + price_now,
-        #        "|Descuento Congnitivo: " + discount)
 
-    df = pd.DataFrame(data_jumbo)
-    df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\jumbo_medellin_{category}_data.txt',
-              index=False, encoding='utf-8')
-
-time.sleep(3)
-driver.quit()
+        rprint("SKU: " + name,
+               "|Marca: " + brand,
+               #    "|Precio Jumbo Prime: " + price_jumbo_prime,
+               ",Precio Regular: " + price_regular,
+               "|Precio Normal: " + price_now,
+               "|Descuento Congnitivo: " + discount)

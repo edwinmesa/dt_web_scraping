@@ -16,6 +16,8 @@ from selenium.common.exceptions import TimeoutException
 # ------------------------------------------------------------------
 
 # This function search each element of the document DOM
+
+
 def findElementTextBySelector(selector, exception):
     try:
         element = i.find_element(
@@ -26,19 +28,23 @@ def findElementTextBySelector(selector, exception):
 
 def findElementNumberBySelector(selector, exception):
     try:
-        element = i.find_element(By.CSS_SELECTOR, selector).text.replace('$', '')
+        element = i.find_element(
+            By.CSS_SELECTOR, selector).text.replace('$', '')
         element = "".join([ch for ch in element if ch.isdigit()])
     except:
         element = exception
     return element
 
 # Function Beatiful View
+
+
 def process_data():
     time.sleep(0.02)
 
 # ----------------------------------------------------------------
 # TODO: add support for the WebDriver
 # ----------------------------------------------------------------
+
 
 # Bar progress -> comment
 for _ in track(range(100), description='[green]Iniciando Scraping Almacenes EXITO'):
@@ -121,10 +127,10 @@ select_menu_whisky = driver.find_element(
 select_menu_whisky.click()
 
 # sleep for a few seconds before loading the page
-time.sleep(20)
+time.sleep(5)
 
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-time.sleep(15)
+time.sleep(3)
 # class vtex button load more
 initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
 # define the max clicks for page
@@ -147,14 +153,14 @@ while count <= max_click_SHOW_MORE:
 print("Continue......")
 
 items = driver.find_elements(
-    By.ID,  "gallery-layout-container")
+    By.CSS_SELECTOR,  ".vtex-product-summary-2-x-element.pointer.pt3.pb4.flex.flex-column.h-100")
 
 data_exito = []
 
 for i in items:
     try:
         name = i.find_element(
-            By.CSS_SELECTOR, ".vtex-flex-layout-0-x-flexColChild.vtex-flex-layout-0-x-flexColChild--product-info.pb0").text.strip().upper()
+            By.CSS_SELECTOR, ".vtex-store-components-3-x-productNameContainer.mv0.t-heading-4").text.strip().upper()
     except:
         name = "SIN DESCRIPCION"
     print(name)
