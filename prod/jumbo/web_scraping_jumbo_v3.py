@@ -16,6 +16,8 @@ from selenium.common.exceptions import TimeoutException
 # ------------------------------------------------------------------
 
 # This function search each element of the document DOM
+
+
 def findElementTextBySelector(selector, exception):
     try:
         element = i.find_element(
@@ -24,21 +26,26 @@ def findElementTextBySelector(selector, exception):
         element = exception
     return element
 
+
 def findElementNumberBySelector(selector, exception):
     try:
-        element = i.find_element(By.CSS_SELECTOR, selector).text.replace('$', '')
+        element = i.find_element(
+            By.CSS_SELECTOR, selector).text.replace('$', '')
         element = "".join([ch for ch in element if ch.isdigit()])
     except:
         element = exception
     return element
 
 # Function Beatiful View
+
+
 def process_data():
     time.sleep(0.02)
 
 # ----------------------------------------------------------------
 # TODO: add support for the WebDriver
 # ----------------------------------------------------------------
+
 
 # Bar progress -> comment
 for _ in track(range(100), description='[green]Iniciando Scraping Almacenes JUMBO'):
@@ -102,8 +109,16 @@ for category in categories:
         discount = findElementNumberBySelector(
             ".tiendasjumboqaio-jumbo-minicart-2-x-containerPercentageFlag", "0")
 
-        data_jumbo.append({"shop": "JUMBO", "city": "Medellin", "name": name, "brand": brand, "price_jumbo_prime": price_jumbo_prime, "price_regular": price_regular,
-                           "price_now": price_now, "discount": discount})
+        data_jumbo.append({"shop": "JUMBO",
+                           "city": "Medellin",
+                           "location": "Nacional",
+                           "category": category,
+                           "name": name,
+                           "brand": brand,
+                           "price_jumbo_prime": price_jumbo_prime,
+                           "price_regular": price_regular,
+                           "price_now": price_now,
+                           "discount": discount})
         # rprint("SKU: " + name,
         #        "|Marca: " + brand,
         #        "|Precio Jumbo Prime: " + price_jumbo_prime,

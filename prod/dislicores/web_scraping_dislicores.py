@@ -51,23 +51,18 @@ def findElementByAndSendKey(by, selector, key, t):
     open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
-# Function Beatiful View
+def scrollDownPage(driver):
+    time.sleep(5) 
+    return driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    # element = driver.find_element(By.CLASS_NAME, ".exito-footer-3-x-footer")
+    # return driver.execute_script("arguments[0].scrollIntoView();")
+    # driver.execute_script("arguments[0].click();", element)
 
+# Function Beatiful View
 
 def process_data():
     time.sleep(0.02)
 
-# ----------------------------------------------------------------
-# TODO: add support for the WebDriver
-# ----------------------------------------------------------------
-
-
-# Bar progress -> comment
-for _ in track(range(100), description='[green]Iniciando Scraping Almacenes EXITO'):
-    process_data()
-# Initialized by selenium driver
-driver = webdriver.Firefox()
-driver.maximize_window()
 # Categories of brands that should be considered for search results
 categories = ['whisky-ron-brandy-conac', 'vinos','cervezas', 'tequilas-ginebras-y-vodkas'] 
 
@@ -77,54 +72,42 @@ shops = {'Bogotá, D.c.': 'EXITO Calle 80', 'Medellín': 'Exito Envigado','Barra
 # TODO: Extract the data for shop EXITO
 # ------------------------------------------------------------------
 
+     
 for city, suc in shops.items():
     for category in categories:
+        # Bar progress -> comment
+        for _ in track(range(100), description='[green]Iniciando Scraping Almacenes EXITO'):
+            process_data()
+        # Initialized by selenium driver
+        driver = webdriver.Firefox()
+        driver.maximize_window()
+
         # Open the Page
         if category == "whisky-ron-brandy-conac":
             driver.get(f"https://www.exito.com/licores/{category}")
         else:
-            driver.get(f"https://www.exito.com/vinos-y-licores/{category}")    
+            driver.get(f"https://www.exito.com/mercado/vinos-y-licores/{category}")    
         time.sleep(15)
-
-        # Open the modal for buy
+    
         # findElementBy(
-        #     By.XPATH, "//span[@class='exito-geolocation-3-x-addressResult']", 3)
-        # Select for buy
-        findElementBy(
-            By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 3)
+        #     By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 3)
         # Click for city selection
         findElementBy(
             By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 3)
         # List of cities
         findElementByAndSendKey(
             By.ID, "react-select-2-input", city, 3)
-        # Select the city
-        # findElementBy(By.XPATH, "//div[@id='react-select-2-option-0']", 1)
-        # Click for shop selection
         findElementByAndSendKey(
             By.ID, "react-select-4-input", suc, 3)
-        # Select the shop
-        # findElementBy(By.XPATH, "//div[@id='react-select-4-option-0']", 1)
-        # confirm the selection
-
         findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 3)
 
-        # break
-        # # Click in menu
-        # findElementBy(By.ID, "category-menu", 10)
-        # # Click in Grocery
-        # findElementBy(By.ID, "undefined-nivel2-Mercado", 10)
-        # # Click in Categories
-        # findElementBy(
-        #     By.XPATH, "//p[@id='Categorías-nivel3-Whisky, ron, brandy y coñac']", 15)
-        # # Go to end the page
-        time.sleep(20)
-        driver.execute_script(
-            "window.scrollTo(0, document.body.scrollHeight);")
+        scrollDownPage(driver)
+        # scrollDownPage(driver)
+
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 20
+        max_click_SHOW_MORE = 1
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page
@@ -172,16 +155,13 @@ for city, suc in shops.items():
                                "price_now": price_now,
                                "discount": discount})
 
-            # rprint("SKU: " + name,
-            #        "|Marca: " + brand,
-            #        #    "|Precio Jumbo Prime: " + price_jumbo_prime,
-            #        ",Precio Regular: " + price_regular,
-            #        "|Precio Normal: " + price_now,
-            #        "|Descuento Congnitivo: " + discount)
-
         df = pd.DataFrame(data_exito)
         df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\exito_{city}_{suc}_{category}_data.txt',
                   index=False, encoding='utf-8')
+
+        time.sleep(1)
+        driver.quit()
+
 
 time.sleep(3)
 driver.quit()

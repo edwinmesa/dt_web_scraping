@@ -1,7 +1,13 @@
-from rich.console import Console
-from rich.text import Text
+shops = dict([
+    ('Bogotá, D.c.', 'EXITO Calle 80'),
+    ('Medellín', 'Exito Poblado'),
+])
 
-console = Console()
-text = Text("Hello, World!")
-text.stylize("bold magenta", 0, 6)
-console.print(text)
+
+# for (col, row), piece in shops.items():
+#     print(col, row, piece)
+
+
+a_dict =  {'Bogotá, D.c.': 'EXITO Calle 80', 'Medellín': 'Exito Poblado'}
+for city, suc in a_dict.items():
+  print(city, '->', suc)
