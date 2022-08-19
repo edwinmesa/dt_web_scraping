@@ -76,7 +76,7 @@ shops = {'Bogotá, D.c.': 'EXITO Calle 80', 'Medellín': 'Exito Envigado','Barra
 for city, suc in shops.items():
     for category in categories:
         # Bar progress -> comment
-        for _ in track(range(100), description='[green]Iniciando Scraping Almacenes EXITO'):
+        for _ in track(range(100), description=f'[green]Iniciando Scraping Almacenes EXITO ciudad {city} categoria: {category}'):
             process_data()
         # Initialized by selenium driver with options and optmizer
         options=Options()
@@ -109,23 +109,23 @@ for city, suc in shops.items():
             driver.get(f"https://www.exito.com/licores/{category}")
         else:
             driver.get(f"https://www.exito.com/mercado/vinos-y-licores/{category}")    
-        time.sleep(15)
+        time.sleep(12)
     
         findElementBy(
-            By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 3)
+            By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 2)
         # Click for city selection
         findElementBy(
-            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 3)
+            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 2)
         # List of cities
         findElementByAndSendKey(
-            By.ID, "react-select-2-input", city, 3)
+            By.ID, "react-select-2-input", city, 2)
         findElementByAndSendKey(
-            By.ID, "react-select-4-input", suc, 3)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 3)
+            By.ID, "react-select-4-input", suc, 2)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 2)
 
         # For security reasons, we used twice the function because the page is refresh
         # scrollDownPage(driver, 5)
-        scrollDownPage(driver, 20)
+        scrollDownPage(driver, 10)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
@@ -135,9 +135,9 @@ for city, suc in shops.items():
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 100).until(
-                    EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
                 WebDriverWait(driver, 30).until(
+                    EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
+                WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
                 time.sleep(10)
@@ -159,6 +159,8 @@ for city, suc in shops.items():
                 ".vtex-store-components-3-x-productNameContainer.mv0.t-heading-4", "SIN DESCRIPCION")
             brand = findElementTextBySelector(
                 ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
+            price_prime = findElementNumberBySelector(
+                ".exito-vtex-components-4-x-valuePLPAllied", "0")    
             price_regular = findElementNumberBySelector(
                 ".exito-vtex-components-4-x-list-price.t-mini.ttn.strike", "0")
             price_now = findElementNumberBySelector(
@@ -172,7 +174,7 @@ for city, suc in shops.items():
                                "category": category,
                                "name": name,
                                "brand": brand,
-                               # "price_jumbo_prime": price_jumbo_prime,
+                               "price_prime": price_prime,
                                "price_regular": price_regular,
                                "price_now": price_now,
                                "discount": discount})

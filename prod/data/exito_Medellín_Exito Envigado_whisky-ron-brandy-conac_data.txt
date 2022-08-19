@@ -1,54 +1,19 @@
-shop,city,location,category,name,brand,price_regular,price_now,discount
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,GLENLIVET FOUNDERS 700 GLENLIVET 700 ML,GLENLIVET,156900,117675,25
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS REGAL CHIVAS REGAL 700 ML,CHIVAS REGAL,115600,92480,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS 12 1000 CHIVAS REGAL 1000 ML,CHIVAS REGAL,168400,134720,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS 18 700 CHIVAS REGAL 700 ML,CHIVAS REGAL,239000,191200,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY MIZUNARA CHIVAS REGAL 700 ML,CHIVAS REGAL,191900,153520,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BUCHANANS DELUXE X 750 ML,BUCHANAN S,0,145900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BUCHANANS MASTER X 750 ML,BUCHANAN S,0,159900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY OLD PARR 12 AÑOS X 750 ML,OLD PARR,0,129900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY 12 AÑOS OLD PARR 1000 MILILITRO,OLD PARR,0,168300,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BUCHANANS DELUXE X 1000 ML,BUCHANAN S,0,188700,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY SOMETHING 750 ML,SOMETHING,0,61100,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY JOHNNIE WALKER RED X 1000 ML,JOHNNIE WALKER.,0,81600,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS EXTRA 13 700 CHIVAS REGAL 700 ML,CHIVAS REGAL,145800,116640,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BLACK LABEL 12 AÑOS JOHNNIE WALKER. 700 MILILITRO,JOHNNIE WALKER.,0,127500,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKEY BOTELLA JACK DANIELS 750 ML,JACK DANIELS,0,122200,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS 12 1000 CHIVAS REGAL 1000 ML,CHIVAS REGAL,168400,134720,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS REGAL CHIVAS REGAL 700 ML,CHIVAS REGAL,115600,92480,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY DOUBLE BLACK BLENDED X 700 ML,JOHNNIE WALKER.,0,163200,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BUCHANANS DELUXE X 375 ML,BUCHANAN S,0,84100,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY MIZUNARA CHIVAS REGAL 700 ML,CHIVAS REGAL,191900,153520,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON GRAN RSVA 15AOS VIEJO DE CALDAS 750 ML,VIEJO DE CALDAS,0,98500,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY STAND TRIPLE WOOD GRANTS 1000 ML,GRANT'S,0,66900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKEY FIRE JACK DANIELS 750 ML,JACK DANIELS,0,121000,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON GRAN RVA CARTA DE ORO 8AÑO VIEJO DE CALDAS 750 ML,VIEJO DE CALDAS,0,76600,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BLACK LABEL JOHNNIE WALKER. 1000 MILILITRO,JOHNNIE WALKER.,0,160000,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON MEDIA VIEJO DE CALDAS 375 ML,VIEJO DE CALDAS,0,24700,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON TETRA LITRO VIEJO DE CALDAS 1000 ML,VIEJO DE CALDAS,0,58400,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON GRAN SOLERA 19 AÑOS MEDELLIN 750 ML,MEDELLIN,0,108100,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY DE MALTA DUFFTOWN SINGLETON 700 MILILITRO,SINGLETON,0,153000,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKEY MEDIA JACK DANIELS 375 ML,JACK DANIELS,0,61000,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY JOHNNIE WALKER BLUE LABEL X 750 ML,JOHNNIE WALKER.,0,850000,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY JOVEN CLAN MACGREGOR 700 ML,CLAN MACGREGOR,0,32500,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON GARRAFA VIEJO DE CALDAS 1750 ML,VIEJO DE CALDAS,0,104800,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,THE GLENLIVET 12 GLENLIVET 700 ML,GLENLIVET,0,177700,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY 12 AÑOS GLENFIDDICH 750 ML,GLENFIDDICH,0,165900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS EXTRA 13 1000 CHIVAS REGAL 1000 ML,CHIVAS REGAL,0,192300,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON MEDELLÍN AÑEJO 3 AÑOS GARRAFA X 2000 ML,MEDELLIN,0,89200,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON MANDARINA BACARDI 750 ML,BACARDI,0,42800,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON ROBLE BLANCO VIEJO DE CALDAS 750 ML,VIEJO DE CALDAS,0,39000,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS 18 700 CHIVAS REGAL 700 ML,CHIVAS REGAL,239000,191200,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,JAMESON 700 JAMESON 700 ML,JAMESON,0,87700,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY 8 ANOS THE FAMOUS GROUSE 700 ML,THE FAMOUS GROUSE,0,63000,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY STAND TRIPLE WOOD GRANTS 750 ML,GRANT'S,0,51900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON EXTRAVIEJO JUAN DE LA CRUZ VIEJO DE CALDAS 750 ML,VIEJO DE CALDAS,0,55500,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY HIGHLAND SUPREME HAIG SUPREME 750 ML,HAIG SUPREME,0,69900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON ANEJO BACARDI 750 ML,BACARDI,0,41200,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON LIMON BLLA BACARDI 750 ML,BACARDI,0,43050,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY TRIPLE WOOD GARRAFA GRANTS 1750 ML,GRANT'S,0,110900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON PREMIUM LA HECHICERA 700 ML,LA HECHICERA,207900,166320,20
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY 15 AÑOS GLENFIDDICH 750 ML,GLENFIDDICH,0,251300,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON MEDELLÍN EXTRA AÑEJO 8 AÑOS BOTELLA X 750 ML,MEDELLIN,0,55800,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,RON CARIBBEAN SAILOR JERRY 700 ML,SAILOR JERRY,0,73900,0
-EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY SINGLE MALT 15 AÑOS SINGLETON 700 ML,SINGLETON,0,229000,0
+shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,GLENLIVET FOUNDERS 700 GLENLIVET 700 ML,GLENLIVET,0,156900,117675,25
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS REGAL CHIVAS REGAL 700 ML,CHIVAS REGAL,98260,115600,92480,0
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS 12 1000 CHIVAS REGAL 1000 ML,CHIVAS REGAL,143140,168400,134720,0
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS EXTRA 13 700 CHIVAS REGAL 700 ML,CHIVAS REGAL,0,145800,116640,20
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS 18 700 CHIVAS REGAL 700 ML,CHIVAS REGAL,203150,239000,191200,0
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BUCHANANS DELUXE X 750 ML,BUCHANAN S,124015,145900,145900,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BUCHANANS MASTER X 750 ML,BUCHANAN S,135915,159900,159900,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY OLD PARR 12 AÑOS X 750 ML,OLD PARR,110415,129900,129900,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY 12 AÑOS OLD PARR 1000 MILILITRO,OLD PARR,143055,168300,168300,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BUCHANANS DELUXE X 1000 ML,BUCHANAN S,160395,188700,188700,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY SOMETHING 750 ML,SOMETHING,51935,61100,61100,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY JOHNNIE WALKER RED X 1000 ML,JOHNNIE WALKER.,69360,81600,81600,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS EXTRA 13 700 CHIVAS REGAL 700 ML,CHIVAS REGAL,0,145800,116640,20
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY BLACK LABEL 12 AÑOS JOHNNIE WALKER. 700 MILILITRO,JOHNNIE WALKER.,108375,127500,127500,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKEY BOTELLA JACK DANIELS 750 ML,JACK DANIELS,103870,122200,122200,15
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS 12 1000 CHIVAS REGAL 1000 ML,CHIVAS REGAL,143140,168400,134720,0
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,CHIVAS REGAL CHIVAS REGAL 700 ML,CHIVAS REGAL,98260,115600,92480,0
+EXITO,Medellín,Exito Envigado,whisky-ron-brandy-conac,WHISKY DOUBLE BLACK BLENDED X 700 ML,JOHNNIE WALKER.,0,163200,138720,15

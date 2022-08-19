@@ -12,6 +12,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver import Firefox
 # ------------------------------------------------------------------
 # TODO: functions
 # ------------------------------------------------------------------
@@ -51,70 +54,96 @@ def findElementByAndSendKey(by, selector, key, t):
     open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
-def scrollDownPage(driver):
-    time.sleep(5) 
-    return driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    # element = driver.find_element(By.CLASS_NAME, ".exito-footer-3-x-footer")
-    # return driver.execute_script("arguments[0].scrollIntoView();")
-    # driver.execute_script("arguments[0].click();", element)
+def scrollDownPage(driver, t):
+    time.sleep(t)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(t)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 # Function Beatiful View
-
 def process_data():
     time.sleep(0.02)
 
 # Categories of brands that should be considered for search results
-categories = ['whisky-ron-brandy-conac', 'vinos','cervezas', 'tequilas-ginebras-y-vodkas'] 
+categories = ['vinos','licores', 'tequilas'] 
 
-shops = {'Bogotá, D.c.': 'EXITO Calle 80', 'Medellín': 'Exito Envigado','Barranquilla':'Exito Barranquilla'}
+shops = {'Bogotá, D.c.', 'Medellín','Barranquilla'}
 
 # ------------------------------------------------------------------
 # TODO: Extract the data for shop EXITO
 # ------------------------------------------------------------------
 
-     
-for city, suc in shops.items():
+for city in shops:
     for category in categories:
         # Bar progress -> comment
-        for _ in track(range(100), description='[green]Iniciando Scraping Almacenes EXITO'):
+        for _ in track(range(100), description=f'[green]Iniciando Scraping en Dislicores ciudad {city} categoria: {category}'):
             process_data()
-        # Initialized by selenium driver
-        driver = webdriver.Firefox()
+        # Initialized by selenium driver with options and optmizer
+        options=Options()
+        options.set_preference("network.http.pipelining", True)
+        options.set_preference("network.http.proxy.pipelining", True)
+        options.set_preference("network.http.pipelining.maxrequests", 8)
+        options.set_preference("content.switch.threshold", 250000)
+        options.set_preference("browser.cache.memory.capacity", 65536)
+        options.set_preference("general.startup.browser", False)
+        options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+        options.set_preference("browser.pocket.enabled", False)
+        options.set_preference("loop.enabled", False)
+        options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+        options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+        options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+        options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+        options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+        options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+        options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+        options.set_preference("permissions.default.image", 2) 
+        options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+        options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+        options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+
+        driver = webdriver.Firefox(options=options)
         driver.maximize_window()
 
         # Open the Page
-        if category == "whisky-ron-brandy-conac":
-            driver.get(f"https://www.exito.com/licores/{category}")
-        else:
-            driver.get(f"https://www.exito.com/mercado/vinos-y-licores/{category}")    
-        time.sleep(15)
-    
-        # findElementBy(
-        #     By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 3)
+       
+        driver.get(f"https://www.dislicores.com/{category}")
+      
+        time.sleep(12)
+
+        # Click on Modal Window
+        findElementBy(
+            By.XPATH, "//div[contains(text(),'BY ICOMMKT')]", 1)
         # Click for city selection
         findElementBy(
-            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 3)
-        # List of cities
-        findElementByAndSendKey(
-            By.ID, "react-select-2-input", city, 3)
-        findElementByAndSendKey(
-            By.ID, "react-select-4-input", suc, 3)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 3)
+            By.XPATH, "//div[@class=' css-mqam1g']", 2)
+        # Select City
+        findElementBy(
+            By.XPATH, "//div[@id='react-select-2-option-9']", 2)
+        # Click Box
+        findElementBy(
+            By.XPATH, "//span[@class='dislicoresqa-custom-app-2-x-AgeVerification_a_checkbox_checkmark']", 2)
+        # Click button continue
+        findElementBy(
+            By.XPATH, "//button[normalize-space()='Continuar']", 2)
+        # Close ICOMMKT
+        findElementBy(
+            By.XPATH, "//a[normalize-space()='Ahora no']", 2)
 
-        scrollDownPage(driver)
-        # scrollDownPage(driver)
+        # For security reasons, we used twice the function because the page is refresh
+        # scrollDownPage(driver, 5)
+        scrollDownPage(driver, 10)
 
-
+        
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 1
+        max_click_SHOW_MORE = 20
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
                 WebDriverWait(driver, 30).until(
-                    EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
+                    EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
                 WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
@@ -137,6 +166,8 @@ for city, suc in shops.items():
                 ".vtex-store-components-3-x-productNameContainer.mv0.t-heading-4", "SIN DESCRIPCION")
             brand = findElementTextBySelector(
                 ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
+            price_prime = findElementNumberBySelector(
+                ".exito-vtex-components-4-x-valuePLPAllied", "0")    
             price_regular = findElementNumberBySelector(
                 ".exito-vtex-components-4-x-list-price.t-mini.ttn.strike", "0")
             price_now = findElementNumberBySelector(
@@ -150,7 +181,7 @@ for city, suc in shops.items():
                                "category": category,
                                "name": name,
                                "brand": brand,
-                               # "price_jumbo_prime": price_jumbo_prime,
+                               "price_prime": price_prime,
                                "price_regular": price_regular,
                                "price_now": price_now,
                                "discount": discount})

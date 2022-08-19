@@ -100,7 +100,7 @@ for category in categories:
             ".vtex-product-summary-2-x-productBrand.vtex-product-summary-2-x-brandName.t-body", "SIN DESCRIPCION")
         brand = findElementTextBySelector(
             ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
-        price_jumbo_prime = findElementNumberBySelector(
+        price_prime = findElementNumberBySelector(
             ".tiendasjumboqaio-jumbo-minicart-2-x-generalPrice.tiendasjumboqaio-jumbo-minicart-2-x-primePrice.tiendasjumboqaio-jumbo-minicart-2-x-generalPriceSmall", "0")
         price_regular = findElementNumberBySelector(
             ".tiendasjumboqaio-jumbo-minicart-2-x-cencoListPrice", "0")
@@ -115,7 +115,7 @@ for category in categories:
                            "category": category,
                            "name": name,
                            "brand": brand,
-                           "price_jumbo_prime": price_jumbo_prime,
+                           "price_prime": price_prime,
                            "price_regular": price_regular,
                            "price_now": price_now,
                            "discount": discount})
