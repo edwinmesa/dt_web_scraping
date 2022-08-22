@@ -123,7 +123,7 @@ for city, suc in shops.items():
         By.ID, "react-select-2-input", city, 2)
     findElementByAndSendKey(
         By.ID, "react-select-4-input", suc, 2)
-    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
+    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 10)
 
     # For security reasons, we used twice the function because the page is refresh
     # scrollDownPage(driver, 10)
