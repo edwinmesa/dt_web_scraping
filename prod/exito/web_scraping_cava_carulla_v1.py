@@ -165,7 +165,7 @@ for city, suc in shops.items():
             discount = findElementNumberBySelector(
                 ".exito-vtex-components-4-x-badgeDiscount.flex.items-center", "0")
 
-            data_exito.append({f"shop": "EXITO",
+            data_exito.append({f"shop": "CAVA CARULLA",
                                 "city": city,
                                 "location": suc,
                                 "category": category,
@@ -177,7 +177,7 @@ for city, suc in shops.items():
                                 "discount": discount})
 
         df = pd.DataFrame(data_exito)
-        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\carulla_{city}_{suc}_data.txt',
+        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\cava_carulla_{city}_{suc}_data.txt',
                     index=False, encoding='utf-8')
 
         time.sleep(1)

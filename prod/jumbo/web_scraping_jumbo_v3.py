@@ -119,13 +119,6 @@ for category in categories:
                            "price_regular": price_regular,
                            "price_now": price_now,
                            "discount": discount})
-        # rprint("SKU: " + name,
-        #        "|Marca: " + brand,
-        #        "|Precio Jumbo Prime: " + price_jumbo_prime,
-        #        ",Precio Regular: " + price_regular,
-        #        "|Precio Normal: " + price_now,
-        #        "|Descuento Congnitivo: " + discount)
-
     df = pd.DataFrame(data_jumbo)
     df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\jumbo_medellin_{category}_data.txt',
               index=False, encoding='utf-8')

@@ -40,6 +40,15 @@ def findElementNumberBySelector(selector, exception):
         element = exception
     return element
 
+def findElementNumberByXPATH(selector, exception):
+    try:
+        element = i.find_element(
+            By.XPATH, selector).text.replace('$', '')
+        element = "".join([ch for ch in element if ch.isdigit()])
+    except:
+        element = exception
+    return element    
+
 
 def findElementBy(by, selector, t):
     open_modal = driver.find_element(by, selector)
@@ -57,24 +66,28 @@ def findElementByAndSendKey(by, selector, key, t):
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(t)
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+def scrollDownFullPage(driver):
+    height = driver.execute_script("return document.body.scrollHeight")
+    for i in range(height):
+        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
+        height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
+        time.sleep(0.01)
 
 # Function Beatiful View
 def process_data():
     time.sleep(0.02)
 
-# Cities for search 
-shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140', 'Medellín': 'Carulla Oviedo','Barranquilla':'Carulla Mall Plaza Buenavista'}
+# Categories of brands that should be considered for search results
+categories = ['whisky', 'vino','ron', 'tequila', 'cerveza'] 
 
 # ------------------------------------------------------------------
-# TODO: Extract the data for shop EXITO
+# TODO: Extract the data for shop LA LICORERA
 # ------------------------------------------------------------------
 
-for city, suc in shops.items():
-# for category in categories:
+for category in categories:
     # Bar progress -> comment
-    for _ in track(range(100), description=f'[green]Iniciando Scraping en Carulla ciudad {city}'):
+    for _ in track(range(100), description=f'[green]Iniciando Scraping en La Licorera categoria: {category}'):
         process_data()
     # Initialized by selenium driver with options and optmizer
     options=Options()
@@ -103,69 +116,34 @@ for city, suc in shops.items():
     driver.maximize_window()
 
     # Open the Page
-    driver.get(f"https://www.carulla.com/vinos-y-licores")    
-    time.sleep(12)
-
-    findElementBy(
-        By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 2)
-    # Click for city selection
-    findElementBy(
-        By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 2)
-    # List of cities
-    findElementByAndSendKey(
-        By.ID, "react-select-2-input", city, 2)
-    findElementByAndSendKey(
-        By.ID, "react-select-4-input", suc, 2)
-    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 2)
-
-    # For security reasons, we used twice the function because the page is refresh
-    scrollDownPage(driver, 10)
-
-    initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
-    # define the max clicks for page for default 30
-    max_click_SHOW_MORE = 1
-    # count the number of clicks
-    count = 1
-    # This loop search the button load more and apply the click until the end of page
-    while count <= max_click_SHOW_MORE:
-        try:
-            WebDriverWait(driver, 30).until(
-                EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-            WebDriverWait(driver, 20).until(
-                EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-            count += 1
-            time.sleep(10)
-            # Bar progress -> comment
-            for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
-                time.sleep(1)
-
-        except TimeoutException:
-            break
+    driver.get(f"https://www.lalicorera.com/productos/{category}")
+    time.sleep(5)
+    scrollDownFullPage(driver)
 
     # Search the elements of the page
     items = driver.find_elements(
-        By.CSS_SELECTOR,  ".vtex-product-summary-2-x-element.pointer.pt3.pb4.flex.flex-column.h-100")
+        By.CSS_SELECTOR,  ".item.product-card")
     # Create a frame empty for the data
-    data_exito = []
+    data = []
     # iterate over each element
     for i in items:
         name = findElementTextBySelector(
-            ".vtex-store-components-3-x-productNameContainer.mv0.t-heading-4", "SIN DESCRIPCION")
+            ".product-card-description-title", "SIN DESCRIPCION")
         brand = findElementTextBySelector(
-            ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
+            ".class", "SIN MARCA")
         price_prime = findElementNumberBySelector(
-            ".exito-vtex-components-4-x-valuePLPAllied", "0")    
+            ".class", "0")    
         price_regular = findElementNumberBySelector(
-            ".exito-vtex-components-4-x-list-price.t-mini.ttn.strike", "0")
-        price_now = findElementNumberBySelector(
-            ".exito-vtex-components-4-x-PricePDP", "0")
+            ".product-card-description-before", "0")
+        price_now = findElementNumberByXPATH(
+            "//p[@class='product-card-description-price']", "0")
         discount = findElementNumberBySelector(
-            ".exito-vtex-components-4-x-badgeDiscount.flex.items-center", "0")
+            ".class", "0")
 
-        data_exito.append({f"shop": "CARULLA",
-                            "city": city,
-                            "location": suc,
-                            "category": "Todas",
+        data.append({f"shop": "LA LICORERA",
+                            "city": "Nacional",
+                            "location": "Store",
+                            "category": category,
                             "name": name,
                             "brand": brand,
                             "price_prime": price_prime,
@@ -173,13 +151,12 @@ for city, suc in shops.items():
                             "price_now": price_now,
                             "discount": discount})
 
-    df = pd.DataFrame(data_exito)
-    df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\carulla_{city}_{suc}_data.txt',
+    df = pd.DataFrame(data)
+    df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\la_licorera_{category}_data.txt',
                 index=False, encoding='utf-8')
 
     time.sleep(1)
     driver.quit()
-
 
 time.sleep(3)
 driver.quit()
