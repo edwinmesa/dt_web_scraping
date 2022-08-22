@@ -8,6 +8,9 @@ rem Files Current Month
 "C:\envPython\venv2\Scripts\python.exe" C:\workflow\dt_web_scraping\prod\dislicores\web_scraping_dislicores_v2.py
 "C:\envPython\venv2\Scripts\python.exe" C:\workflow\dt_web_scraping\prod\jumbo\web_scraping_jumbo_v3.py
 "C:\envPython\venv2\Scripts\python.exe" C:\workflow\dt_web_scraping\prod\lalicorera\web_scraping_la_licorera_v2.py
+"C:\envPython\venv2\Scripts\python.exe" C:\workflow\dt_web_scraping\prod\diageo\web_scraping_diageo_v1.py
+
+
 
 rem send files at sftp
 
