@@ -60,6 +60,13 @@ def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+def scrollDownFullPage(driver):
+    height = driver.execute_script("return document.body.scrollHeight")
+    for i in range(height):
+        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
+        height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
+        time.sleep(0.01)  
+
 # Function Beatiful View
 def process_data():
     time.sleep(0.02)
@@ -116,10 +123,11 @@ for city, suc in shops.items():
         By.ID, "react-select-2-input", city, 2)
     findElementByAndSendKey(
         By.ID, "react-select-4-input", suc, 2)
-    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 2)
+    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
 
     # For security reasons, we used twice the function because the page is refresh
-    scrollDownPage(driver, 10)
+    # scrollDownPage(driver, 10)
+    scrollDownFullPage(driver)
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
     # define the max clicks for page for default 30

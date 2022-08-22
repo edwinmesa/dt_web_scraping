@@ -36,6 +36,14 @@ def findElementNumberBySelector(selector, exception):
         element = exception
     return element
 
+def scrollDownFullPage(driver):
+    height = driver.execute_script("return document.body.scrollHeight")
+    for i in range(height):
+        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
+        height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
+        time.sleep(0.01)  
+
+
 # Function Beatiful View
 
 

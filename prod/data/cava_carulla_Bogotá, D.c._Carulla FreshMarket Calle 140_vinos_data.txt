@@ -1,0 +1,41 @@
+shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,LA PIUMA MARCA EXCLUSIVA,0,0,20900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,GATO NEGRO,0,0,48900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,ITYNERA MARCA EXCLUSIVA,0,0,45900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CASILLERO DEL DIABLO,0,0,68900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,ZONIN,0,0,43700,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,PICCINI,0,0,49200,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,MEDICI ERMETE,0,0,46400,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,MARQUES DE RISCAL,0,0,67500,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,MARQUES DE RISCAL,0,0,136000,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,ZONIN,0,0,44700,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,GATO NEGRO,0,0,49900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,PICCINI,0,0,49300,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CASILLERO DEL DIABLO,0,0,106900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,RAMON BILBAO,0,0,121800,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CASILLERO DEL DIABLO,0,0,68500,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,DOM PERIGNON,0,0,2817000,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,GATO NEGRO,0,0,50000,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,TERRA SERENA MARCA EXCLUSIVA,0,0,55900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,JP CHENET,0,0,39600,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,JP CHENET,0,0,10600,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,LAS MORAS,0,0,76500,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,TRES MEDALLAS,0,42800,28248,34
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,PROTOS,0,0,117900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CASILLERO DEL DIABLO,0,0,84900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,TRES MEDALLAS,0,42900,28314,34
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CASA EL ENEMIGO VIGIL,0,0,229700,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,SIETE SOLES,0,0,20900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,GALLO MARCA EXCLUSIVA,0,0,39900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,LAZO,0,0,35100,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,GATO NEGRO,0,0,57900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,RAMON BILBAO,0,0,70400,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CASILLERO DEL DIABLO,0,0,46700,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,LAS MORAS,0,0,54900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,NORTON,0,55500,36630,34
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,TRES MEDALLAS,0,42800,28248,34
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CLETO CHIARLI,0,0,51900,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,RIUNITE,0,0,49000,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,CATENA ZAPATA,0,0,84400,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,NORTON,0,55600,36696,34
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,vinos,SIN DESCRIPCION,LAS MORAS,0,0,92300,0
