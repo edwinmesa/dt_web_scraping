@@ -1,0 +1,41 @@
+shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,169900,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,153000,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,287500,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,876100,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,215600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,689900,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,130100,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JACK DANIELS,0,0,125000,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,190600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JACK DANIELS,0,0,123000,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,MACALLAN,0,0,373100,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,84800,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,0,199600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JACK DANIELS,0,0,124000,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,63600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,GLENLIVET,0,0,183200,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,SOMETHING,0,0,62300,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,OLD PARR,0,0,139600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BLACK AND WHITE,0,0,51800,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,0,145900,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JAMESON,0,90900,77265,15
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,SOMETHING,0,0,84600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,GLENLIVET,0,0,158900,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JACK DANIELS,0,0,62600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,OLD PARR,0,0,176700,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,0,263000,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,160000,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,0,77700,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,MONKEY SHOULDER,0,0,144700,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,122900,104465,15
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,0,158900,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,86200,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,SINGLETON,0,0,153000,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,332700,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,BULLEIT,0,0,145600,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,OLD PARR,0,0,283700,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,GLENFIDDICH,0,0,167900,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,GLENFIDDICH,0,0,439900,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,GLENMORANGIE,0,0,235200,0
+EXITO,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whisky,SIN DESCRIPCION,SINGLETON,0,0,236000,0

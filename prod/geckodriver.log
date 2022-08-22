@@ -2089,3 +2089,17 @@ JavaScript error: https://exitocol.vtexassets.com/_v/public/assets/v1/published/
 JavaScript error: https://exitocol.vtexassets.com/_v/public/assets/v1/published/bundle/public/react/asset.min.js?v=1&files=vtex.render-runtime@8.132.4,ExtensionContainer&files=vtex.admin-pages@4.49.5,common,6,18,HighlightOverlay&files=exito.pixels@0.0.4,index&files=biggy.pixel@1.5.2,common,0,index&files=vtex.request-capture@2.2.2,index&files=vtex.sae-analytics@2.9.1,index&files=vtex.facebook-fbe@1.5.0,common,1,FbePixel&files=vtex.google-tag-manager@2.10.0,index&files=vtex.react-vtexid@4.49.0,common,AuthServiceLazy,AuthStateLazy,getAbsReturnUrl,1&async=2&workspace=master, line 28: TypeError: t.path is undefined
 JavaScript warning: https://pagead2.googlesyndication.com/bg/8Oc7qVgGezqJSgjjaaCdJlEAdJIIw0tPZxYDqe1tkXI.js line 2 > eval line 2004 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
 JavaScript error: https://exitocol.vtexassets.com/_v/public/assets/v1/published/bundle/public/react/asset.min.js?v=1&files=vtex.render-runtime@8.132.4,ExtensionContainer&files=vtex.admin-pages@4.49.5,common,6,18,HighlightOverlay&files=exito.pixels@0.0.4,index&files=biggy.pixel@1.5.2,common,0,index&files=vtex.request-capture@2.2.2,index&files=vtex.sae-analytics@2.9.1,index&files=vtex.facebook-fbe@1.5.0,common,1,FbePixel&files=vtex.google-tag-manager@2.10.0,index&files=vtex.react-vtexid@4.49.0,common,AuthServiceLazy,AuthStateLazy,getAbsReturnUrl,1&async=2&workspace=master, line 28: TypeError: t.path is undefined
+1661182415347	geckodriver	INFO	Listening on 127.0.0.1:53154
+1661182418342	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "53155" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\EDWIN~1.MES\\AppData\\Local\\Temp\\rust_mozprofileCGcNcR"
+1661182418606	Marionette	INFO	Marionette enabled
+1661182418610	Marionette	INFO	Listening on port 53164
+WebDriver BiDi listening on ws://localhost:53155
+Read port: 53164
+1661182418756	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\EDWIN~1.MES\\AppData\\Local\\Temp\\rust_mozprofileCGcNcR\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:53155/devtools/browser/385640db-96db-43b0-a19c-7257c49fadee
+JavaScript error: resource://gre/modules/URIFixup.jsm, line 278: NS_ERROR_FAILURE: Should pass a non-null uri
+JavaScript warning: https://resources-rt.idx.lat/T2.min.js, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript error: https://www.googletagmanager.com/gtm.js?id=GTM-TQLV7VW line 3 > eval, line 1: TypeError: a is null
+JavaScript error: https://www.googletagmanager.com/gtm.js?id=GTM-TQLV7VW line 3 > eval, line 4: ReferenceError: categoryTree is not defined
+JavaScript error: https://www.carulla.com/vinos-y-licores?page=2 line 509 > injectedScript, line 1: TypeError: a is null

@@ -57,24 +57,26 @@ def findElementByAndSendKey(by, selector, key, t):
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(t)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 # Function Beatiful View
 def process_data():
     time.sleep(0.02)
 
 # Categories of brands that should be considered for search results
-categories = ['vinos','licores', 'tequilas'] 
-
-shops = {'Bogotá, D.c.', 'Medellín','Barranquilla'}
+categories = ['whisky','vinos','cervezas', 'tequilas'] 
+# Cities for search 
+shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140', 'Medellín': 'Carulla Oviedo','Barranquilla':'Carulla Mall Plaza Buenavista'}
 
 # ------------------------------------------------------------------
 # TODO: Extract the data for shop EXITO
 # ------------------------------------------------------------------
 
-for city in shops:
+for city, suc in shops.items():
     for category in categories:
         # Bar progress -> comment
-        for _ in track(range(100), description=f'[green]Iniciando Scraping en Dislicores ciudad {city} categoria: {category}'):
+        for _ in track(range(100), description=f'[green]Iniciando Scraping Almacenes CAVA Carulla en la ciudad {city}'):
             process_data()
         # Initialized by selenium driver with options and optmizer
         options=Options()
@@ -103,28 +105,25 @@ for city in shops:
         driver.maximize_window()
 
         # Open the Page
-       
-        driver.get(f"https://www.dislicores.com/{category}")
-      
+        driver.get(f"https://cava.carulla.com/vinos-y-licores/{category}")    
         time.sleep(12)
+        
+        # Selector for age
+        findElementBy(
+            By.CSS_SELECTOR, ".exito-utils-ui-0-x-buttonConfirmation", 2)
+        # Select the geo
+        findElementBy(
+            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 2)
+        # List of cities
+        findElementByAndSendKey(
+            By.ID, "react-select-2-input", city, 2)
+        findElementByAndSendKey(
+            By.ID, "react-select-4-input", suc, 2)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 2)
 
-        # Click on Modal Window
-        findElementBy(
-            By.XPATH, "//div[contains(text(),'BY ICOMMKT')]", 1)
-        # Click for city selection
-        findElementBy(
-            By.XPATH, "//div[@class=' css-mqam1g']", 2)
-        # Select City
-        findElementBy(
-            By.XPATH, "//div[@id='react-select-2-option-9']", 2)
-        # Click Box
-        findElementBy(
-            By.XPATH, "//span[@class='dislicoresqa-custom-app-2-x-AgeVerification_a_checkbox_checkmark']", 2)
-        # Click button continue
-        findElementBy(
-            By.XPATH, "//button[normalize-space()='Continuar']", 5)
+        # For security reasons, we used twice the function because the page is refresh
         scrollDownPage(driver, 10)
-      
+
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
         max_click_SHOW_MORE = 1
@@ -154,35 +153,36 @@ for city in shops:
         # iterate over each element
         for i in items:
             name = findElementTextBySelector(
-                ".vtex-product-summary-2-x-productBrand.vtex-product-summary-2-x-brandName.t-body", "SIN DESCRIPCION")
+                ".vtex-store-components-3-x-productNameContainer.mv0.t-heading-4", "SIN DESCRIPCION")
             brand = findElementTextBySelector(
                 ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
             price_prime = findElementNumberBySelector(
                 ".exito-vtex-components-4-x-valuePLPAllied", "0")    
             price_regular = findElementNumberBySelector(
-                ".vtex-store-components-3-x-listPriceValue.ph2.dib.strike.vtex-store-components-3-x-price_listPrice", "0")
+                ".exito-vtex-components-4-x-list-price.t-mini.ttn.strike", "0")
             price_now = findElementNumberBySelector(
-                ".vtex-store-components-3-x-sellingPrice.vtex-store-components-3-x-sellingPriceValue.t-heading-2-s.dib.ph2.vtex-store-components-3-x-price_sellingPrice", "0")
+                ".exito-vtex-components-4-x-PricePDP", "0")
             discount = findElementNumberBySelector(
-                ".vtex-store-components-3-x-discountInsideContainer.t-mini.white.absolute.right-0.pv2.ph3.bg-emphasis.z-1", "0")
+                ".exito-vtex-components-4-x-badgeDiscount.flex.items-center", "0")
 
-            data_exito.append({f"shop": "DISLICORES",
-                               "city": city,
-                               "location": "Store",
-                               "category": category,
-                               "name": name,
-                               "brand": brand,
-                               "price_prime": price_prime,
-                               "price_regular": price_regular,
-                               "price_now": price_now,
-                               "discount": discount})
+            data_exito.append({f"shop": "EXITO",
+                                "city": city,
+                                "location": suc,
+                                "category": category,
+                                "name": name,
+                                "brand": brand,
+                                "price_prime": price_prime,
+                                "price_regular": price_regular,
+                                "price_now": price_now,
+                                "discount": discount})
 
         df = pd.DataFrame(data_exito)
-        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\dislicores_{city}_{category}_data.txt',
-                  index=False, encoding='utf-8')
+        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\carulla_{city}_{suc}_data.txt',
+                    index=False, encoding='utf-8')
 
         time.sleep(1)
         driver.quit()
+
 
 time.sleep(3)
 driver.quit()

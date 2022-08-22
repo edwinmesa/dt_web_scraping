@@ -64,9 +64,7 @@ def scrollDownPage(driver, t):
 def process_data():
     time.sleep(0.02)
 
-# Categories of brands that should be considered for search results
-categories = ['whisky-ron-brandy-conac', 'vinos','cervezas', 'tequilas-ginebras-y-vodkas'] 
-
+# Cities for search 
 shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140', 'Medellín': 'Carulla Oviedo','Barranquilla':'Carulla Mall Plaza Buenavista'}
 
 # ------------------------------------------------------------------
@@ -76,7 +74,7 @@ shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140', 'Medellín': 'Carulla
 for city, suc in shops.items():
 # for category in categories:
     # Bar progress -> comment
-    for _ in track(range(100), description=f'[green]Iniciando Scraping Almacenes EXITO ciudad {city}'):
+    for _ in track(range(100), description=f'[green]Iniciando Scraping en Carulla ciudad {city}'):
         process_data()
     # Initialized by selenium driver with options and optmizer
     options=Options()
@@ -121,7 +119,6 @@ for city, suc in shops.items():
     findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 2)
 
     # For security reasons, we used twice the function because the page is refresh
-    # scrollDownPage(driver, 5)
     scrollDownPage(driver, 10)
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
