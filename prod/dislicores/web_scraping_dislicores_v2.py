@@ -57,8 +57,6 @@ def findElementByAndSendKey(by, selector, key, t):
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    # time.sleep(t)
-    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 # Function Beatiful View
 def process_data():
@@ -125,17 +123,11 @@ for city in shops:
         # Click button continue
         findElementBy(
             By.XPATH, "//button[normalize-space()='Continuar']", 5)
-        # Close ICOMMKT
-        # findElementBy(
-        #     By.XPATH, "//a[normalize-space()='Ahora no']", 2)
-
-        # For security reasons, we used twice the function because the page is refresh
-        # scrollDownPage(driver, 5)
         scrollDownPage(driver, 10)
       
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 30
+        max_click_SHOW_MORE = 35
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page
@@ -191,7 +183,6 @@ for city in shops:
 
         time.sleep(1)
         driver.quit()
-
 
 time.sleep(3)
 driver.quit()
