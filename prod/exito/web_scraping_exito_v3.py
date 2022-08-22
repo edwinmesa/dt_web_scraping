@@ -64,8 +64,7 @@ def scrollDownPage(driver, t):
 def process_data():
     time.sleep(0.02)
 
-# Categories of brands that should be considered for search results
-# categories = ['whisky-ron-brandy-conac', 'vinos','cervezas', 'tequilas-ginebras-y-vodkas'] 
+# City for search
 
 shops = {'Bogotá, D.c.': 'EXITO Calle 80', 'Medellín': 'Exito Envigado','Barranquilla':'Exito Barranquilla'}
 
