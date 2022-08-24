@@ -56,7 +56,6 @@ def findElementByAndSendKey(by, selector, key, t):
     time.sleep(t)
 
 
-
 def findElementNumberByXPATH(selector, exception):
     try:
         element = i.find_element(
@@ -90,7 +89,7 @@ def process_data():
 # Categories of brands that should be considered for search results
 
 
-shops = ["Parque de la 93"]
+shops = ["Calle 10 #42-63, Medellín"]
 categories = ['cervezas']
 
 # ------------------------------------------------------------------
@@ -142,7 +141,8 @@ for city in shops:
 
         # Open the Page
 
-        driver.get(f"https://www.rappi.com.co/tiendas/900264358-turbo-liquor-prime-nc/{category}")
+        driver.get(
+            f"https://www.rappi.com.co/tiendas/900131965-turbo-licores-home/licores/{category}")
 
         time.sleep(5)
         # Select the geolocation
@@ -156,21 +156,26 @@ for city in shops:
             By.CSS_SELECTOR, ".chakra-input.css-u3tcey", city, 3)
         # Select the direction
         findElementBy(
-            By.CSS_SELECTOR, ".sc-hAZoDl.FcjuD.sc-ikZpkk.fpunMk", 2)    
+            By.CSS_SELECTOR, ".sc-hAZoDl.FcjuD.sc-ikZpkk.fpunMk", 2)
+
         findElementBy(
-            By.CSS_SELECTOR, ".chakra-stack.css-1cp68dr", 2) 
+            By.CSS_SELECTOR, ".chakra-stack.css-1cp68dr", 2)
+
+        findElementBy(
+            By.CSS_SELECTOR, ".sc-y1vkgn-3.kAbqxb", 2)
         # Save the location
         findElementBy(
             By.CSS_SELECTOR, ".chakra-modal__footer.css-1pw6her", 2)
+
         # Expand the category
-        findElementBy(
-            By.CSS_SELECTOR, ".sc-ifAKCX.euulIn.sc-dxgOiQ.jgwwBD.primary", 5)    
+        # findElementBy(
+        #     By.CSS_SELECTOR, ".sc-bdVaJa sc-bwzfXH gJFplR tertiary big", 5)
 
         scrollDownFullPage(driver)
 
         initial_XPATH = "//span[normalize-space()='Ver más']"
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 35
+        max_click_SHOW_MORE = 1
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page
@@ -181,49 +186,70 @@ for city in shops:
                 WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
-                time.sleep(10)
+                time.sleep(5)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
 
             except TimeoutException:
                 break
-        
+
         # break
         # Search the elements of the page
         items = driver.find_elements(
-            By.CSS_SELECTOR,  ".sc-gqPbQI.foGJgG")
+            By.CSS_SELECTOR,  ".sc-ifAKCX.jeNnNa.sc-dxgOiQ.jgwwBD.sc-b6d15cf5-0.jxKaTW")
+        # break
         # Create a frame empty for the data
         data = []
         # iterate over each element
-        for i in items:
-            name = findElementTextBySelector(
-                ".sc-fYiAbW.fSjCXa", "SIN DESCRIPCION")
-            brand = findElementTextBySelector(
-                ".class", "SIN MARCA")
-            price_prime = findElementNumberBySelector(
-                ".class", "0")
-            price_regular = findElementNumberBySelector(
-                ".sc-ifAKCX.euulIn.sc-bXGyLb.hbKzph", "0")
-            price_now = findElementNumberBySelector(
-                ".vtex-product-price-1-x-sellingPriceValue", "0")
-            discount = findElementNumberBySelector(
-                ".vtex-store-components-3-x-discountInsideContainer.t-mini.white.absolute.right-0.pv2.ph3.bg-emphasis.z-1", "0")
+        max_div = 50
+        count = 2
+        # while count <= max_div:
+        while count <= max_div:
+            try:
+                for i in items:
+                    # try:
+                    name = i.find_element(
+                        By.XPATH, f"/html/body/div[1]/div[4]/div[2]/div[2]/ul/div[{count}]/a/div/div[2]/h4").text
+                count += 1
+            except:
+                pass
+            # print(count)
+            # except:
+            #     name = "name"
+            # name2 = findElementNumberBySelector(
+            #     ".sc-ifAKCX.jeNnNa.sc-dxgOiQ.jgwwBD.sc-b6d15cf5-0.jxKaTW > div > div > span", "0")
+            # brand = findElementTextBySelector(
+            #     ".class", "SIN MARCA")
+            # price_prime = findElementNumberBySelector(
+            #     ".class", "0")
+            # price_regular = findElementNumberBySelector(
+            #     ".sc-ifAKCX.euulIn.sc-bXGyLb.hbKzph", "0")
+            # price_now = findElementNumberBySelector(
+            #     ".vtex-product-price-1-x-sellingPriceValue", "0")
+            # discount = findElementNumberBySelector(
+            #     ".vtex-store-components-3-x-discountInsideContainer.t-mini.white.absolute.right-0.pv2.ph3.bg-emphasis.z-1", "0")
 
-            data.append({f"shop": "DIAGEO",
-                         "city": city,
-                         "location": "Store",
-                         "category": category,
-                         "name": name,
-                         "brand": brand,
-                         "price_prime": price_prime,
-                         "price_regular": price_regular,
-                         "price_now": price_now,
-                         "discount": discount})
+            print(name)
+            # rprint(
+            #     "SKU: " + name,
+            #     #    "|SKU 2: " + name2
+            # )
 
-        df = pd.DataFrame(data)
-        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\diageo_{city}_{category}_data.txt',
-                  index=False, encoding='utf-8')
+        #     data.append({f"shop": "RAPPI",
+        #                  "city": city,
+        #                  "location": "Store",
+        #                  "category": category,
+        #                  "name": name,
+        #                  "brand": brand,
+        #                  "price_prime": price_prime,
+        #                  "price_regular": price_regular,
+        #                  "price_now": price_now,
+        #                  "discount": discount})
+
+        # df = pd.DataFrame(data)
+        # df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\rappi_data.txt',
+        #           index=False, encoding='utf-8')
 
         time.sleep(1)
         driver.quit()
