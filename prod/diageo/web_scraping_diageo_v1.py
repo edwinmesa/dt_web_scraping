@@ -100,7 +100,7 @@ categories = ['whisky', 'vodka', 'cremas',
 for city in shops:
     for category in categories:
         # Bar progress -> comment
-        for _ in track(range(100), description=f'[green]Iniciando Scraping en Diageo categoria: {category}'):
+        for _ in track(range(100), description=f'[green]Iniciando Scraping en Diageo categoria: {category} en la ciudad: {city}'):
             process_data()
         # Initialized by selenium driver with options and optmizer
         options = Options()
@@ -144,7 +144,7 @@ for city in shops:
 
         driver.get(f"https://co.thebar.com/{category}")
 
-        time.sleep(5)
+        time.sleep(7)
 
         # Click on Modal Window
         findElementBy(
