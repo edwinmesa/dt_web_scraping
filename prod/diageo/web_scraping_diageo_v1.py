@@ -160,7 +160,7 @@ for city in shops:
             By.XPATH, "//select[@id='ciudadAgeVerification']", 2)
         # Select City
         findElementByAndSendKey(
-            By.ID, "ciudadAgeVerification", city, 10)
+            By.ID, "ciudadAgeVerification", city, 2)
 
         scrollDownPage(driver, 5)
         # scrollDownFullPage(driver)
@@ -173,9 +173,9 @@ for city in shops:
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 30).until(
+                WebDriverWait(driver, 5).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                WebDriverWait(driver, 20).until(
+                WebDriverWait(driver, 5).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
                 time.sleep(10)

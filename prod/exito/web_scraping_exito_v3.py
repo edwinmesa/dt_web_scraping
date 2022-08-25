@@ -133,15 +133,15 @@ for city, suc in shops.items():
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
     # define the max clicks for page for default 30
-    max_click_SHOW_MORE = 1
+    max_click_SHOW_MORE = 35
     # count the number of clicks
     count = 1
     # This loop search the button load more and apply the click until the end of page
     while count <= max_click_SHOW_MORE:
         try:
-            WebDriverWait(driver, 30).until(
+            WebDriverWait(driver, 5).until(
                 EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-            WebDriverWait(driver, 20).until(
+            WebDriverWait(driver, 5).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
             count += 1
             time.sleep(10)
