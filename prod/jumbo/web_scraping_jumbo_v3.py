@@ -39,9 +39,9 @@ def findElementNumberBySelector(selector, exception):
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-        time.sleep(0.01)  
+        time.sleep(0.05)  
 
 
 # Function Beatiful View
@@ -101,7 +101,7 @@ for category in categories:
     items = driver.find_elements(
         By.CSS_SELECTOR,  ".vtex-product-summary-2-x-element.pointer.pt3.pb4.flex.flex-column.h-100")
     # Create a frame empty for the data
-    data_jumbo = []
+    data = []
     # iterate over each element
     for i in items:
         name = findElementTextBySelector(
@@ -117,7 +117,7 @@ for category in categories:
         discount = findElementNumberBySelector(
             ".tiendasjumboqaio-jumbo-minicart-2-x-containerPercentageFlag", "0")
 
-        data_jumbo.append({"shop": "JUMBO",
+        data.append({"shop": "JUMBO",
                            "city": "Medellin",
                            "location": "Nacional",
                            "category": category,
@@ -127,7 +127,7 @@ for category in categories:
                            "price_regular": price_regular,
                            "price_now": price_now,
                            "discount": discount})
-    df = pd.DataFrame(data_jumbo)
+    df = pd.DataFrame(data)
     df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\jumbo_medellin_{category}_data.txt',
               index=False, encoding='utf-8')
 

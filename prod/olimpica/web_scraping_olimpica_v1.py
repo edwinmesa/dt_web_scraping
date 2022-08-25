@@ -74,10 +74,10 @@ def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
         # scroll by 10 on each iteration
-        driver.execute_script('window.scrollBy(0,10)')
+        driver.execute_script('window.scrollBy(0,20)')
         # reset height to the new height after scroll-triggered elements have been loaded.
         height = driver.execute_script("return document.body.scrollHeight")
-        time.sleep(0.01)
+        time.sleep(0.05)
 
 # Function Beatiful View
 
@@ -128,7 +128,7 @@ for city, suc in shops.items():
 
     # Open the Page
     driver.get(f"https://www.olimpica.com/supermercado/licores")
-    time.sleep(5)
+    time.sleep(10)
 
     # Click for city selection
     findElementBy(
@@ -145,9 +145,6 @@ for city, suc in shops.items():
 
     findElementBy(
         By.XPATH, "//div[normalize-space()='Elegir']", 2)    
-
-    # findElementByAndSendKey(
-    #     By.CSS_SELECTOR, "/html/body/div[13]/div/div/div[2]/div[1]/div[2]/div/div/div/div/div/div/div[1]/div[1]", suc, 2)
 
     scrollDownFullPage(driver)
 

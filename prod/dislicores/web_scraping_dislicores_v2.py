@@ -9,6 +9,7 @@ from rich.progress import track
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
@@ -54,25 +55,39 @@ def findElementByAndSendKey(by, selector, key, t):
     open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
+
+# def ActionChains(driver):
+#     ActionChains(driver)\
+#         .key_down(Keys.SHIFT)\
+#         .send_keys("abc")\
+#         .perform()
+
+
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
-        height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-        time.sleep(0.01)  
+        # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,20)')
+        # reset height to the new height after scroll-triggered elements have been loaded.
+        height = driver.execute_script("return document.body.scrollHeight")
+        time.sleep(0.05)
 
 # Function Beatiful View
+
+
 def process_data():
     time.sleep(0.02)
 
-# Categories of brands that should be considered for search results
-categories = ['vinos','licores', 'tequilas'] 
 
-shops = {'Bogotá, D.c.', 'Medellín','Barranquilla'}
+# Categories of brands that should be considered for search results
+categories = ['vinos', 'licores', 'tequilas']
+
+shops = {'Bogotá, D.c.', 'Medellín', 'Barranquilla'}
 
 # ------------------------------------------------------------------
 # TODO: Extract the data for shop EXITO
@@ -84,40 +99,43 @@ for city in shops:
         for _ in track(range(100), description=f'[green]Iniciando Scraping en Dislicores ciudad {city} categoria: {category}'):
             process_data()
         # Initialized by selenium driver with options and optmizer
-        options=Options()
-        options.set_preference("network.http.pipelining", True)
-        options.set_preference("network.http.proxy.pipelining", True)
-        options.set_preference("network.http.pipelining.maxrequests", 8)
-        options.set_preference("content.switch.threshold", 250000)
-        options.set_preference("browser.cache.memory.capacity", 65536)
-        options.set_preference("general.startup.browser", False)
-        options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
-        options.set_preference("browser.pocket.enabled", False)
-        options.set_preference("loop.enabled", False)
-        options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-        options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-        options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-        options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-        options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-        options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-        options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
-        options.set_preference("permissions.default.image", 2) 
-        options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-        options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-        options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+        options = Options()
+        # options.set_preference("network.http.pipelining", True)
+        # options.set_preference("network.http.proxy.pipelining", True)
+        # options.set_preference("network.http.pipelining.maxrequests", 8)
+        # options.set_preference("content.switch.threshold", 250000)
+        # options.set_preference("browser.cache.memory.capacity", 65536)
+        # options.set_preference("general.startup.browser", False)
+        # options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+        # options.set_preference("browser.pocket.enabled", False)
+        # options.set_preference("loop.enabled", False)
+        # options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+        # options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+        # options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+        # options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+        # options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+        # options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+        # options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+        # options.set_preference("permissions.default.image", 2)
+        # options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+        # options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+        # options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
         driver = webdriver.Firefox(options=options)
         driver.maximize_window()
 
         # Open the Page
-       
+
         driver.get(f"https://www.dislicores.com/{category}")
-      
+
         time.sleep(12)
 
         # Click on Modal Window
-        findElementBy(
-            By.XPATH, "//div[contains(text(),'BY ICOMMKT')]", 1)
+        findElementByAndSendKey(
+        By.ID, "downshift-0-input", "a", 2)
+
+        # ActionChains(driver)
+
         # Click for city selection
         findElementBy(
             By.XPATH, "//div[@class=' css-mqam1g']", 2)
@@ -129,11 +147,11 @@ for city in shops:
             By.XPATH, "//span[@class='dislicoresqa-custom-app-2-x-AgeVerification_a_checkbox_checkmark']", 2)
         # Click button continue
         findElementBy(
-            By.XPATH, "//button[normalize-space()='Continuar']", 5)
+            By.XPATH, "//button[normalize-space()='Continuar']", 3)
 
-        # scrollDownPage(driver, 10)
-        scrollDownFullPage(driver)
-      
+        scrollDownPage(driver, 4)
+        # scrollDownFullPage(driver)
+
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
         max_click_SHOW_MORE = 1
@@ -159,7 +177,7 @@ for city in shops:
         items = driver.find_elements(
             By.CSS_SELECTOR,  ".vtex-product-summary-2-x-element.pointer.pt3.pb4.flex.flex-column.h-100")
         # Create a frame empty for the data
-        data_exito = []
+        data = []
         # iterate over each element
         for i in items:
             name = findElementTextBySelector(
@@ -167,7 +185,7 @@ for city in shops:
             brand = findElementTextBySelector(
                 ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
             price_prime = findElementNumberBySelector(
-                ".exito-vtex-components-4-x-valuePLPAllied", "0")    
+                ".exito-vtex-components-4-x-valuePLPAllied", "0")
             price_regular = findElementNumberBySelector(
                 ".vtex-store-components-3-x-listPriceValue.ph2.dib.strike.vtex-store-components-3-x-price_listPrice", "0")
             price_now = findElementNumberBySelector(
@@ -175,18 +193,18 @@ for city in shops:
             discount = findElementNumberBySelector(
                 ".vtex-store-components-3-x-discountInsideContainer.t-mini.white.absolute.right-0.pv2.ph3.bg-emphasis.z-1", "0")
 
-            data_exito.append({f"shop": "DISLICORES",
-                               "city": city,
-                               "location": "Store",
-                               "category": category,
-                               "name": name,
-                               "brand": brand,
-                               "price_prime": price_prime,
-                               "price_regular": price_regular,
-                               "price_now": price_now,
-                               "discount": discount})
+            data.append({f"shop": "DISLICORES",
+                         "city": city,
+                         "location": "Store",
+                         "category": category,
+                         "name": name,
+                         "brand": brand,
+                         "price_prime": price_prime,
+                         "price_regular": price_regular,
+                         "price_now": price_now,
+                         "discount": discount})
 
-        df = pd.DataFrame(data_exito)
+        df = pd.DataFrame(data)
         df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\dislicores_{city}_{category}_data.txt',
                   index=False, encoding='utf-8')
 

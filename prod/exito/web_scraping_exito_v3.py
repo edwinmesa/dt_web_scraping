@@ -63,9 +63,9 @@ def scrollDownPage(driver, t):
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-        time.sleep(0.01)    
+        time.sleep(0.05)    
 
 # Function Beatiful View
 def process_data():
@@ -81,30 +81,30 @@ shops = {'Bogotá, D.c.': 'EXITO Calle 80', 'Medellín': 'Exito Envigado','Barra
 
 for city, suc in shops.items():
     # Bar progress -> comment
-    for _ in track(range(100), description=f'[green]Iniciando Scraping Almacenes EXITO ciudad {city}'):
+    for _ in track(range(100), description=f'[green]Iniciando Scraping Almacenes EXITO ciudad: {city} sucursal: {suc}'):
         process_data()
     # Initialized by selenium driver with options and optmizer
     options=Options()
-    options.set_preference("network.http.pipelining", True)
-    options.set_preference("network.http.proxy.pipelining", True)
-    options.set_preference("network.http.pipelining.maxrequests", 8)
-    options.set_preference("content.switch.threshold", 250000)
-    options.set_preference("browser.cache.memory.capacity", 65536)
-    options.set_preference("general.startup.browser", False)
-    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
-    options.set_preference("browser.pocket.enabled", False)
-    options.set_preference("loop.enabled", False)
-    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
-    options.set_preference("permissions.default.image", 2) 
-    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+    # options.set_preference("network.http.pipelining", True)
+    # options.set_preference("network.http.proxy.pipelining", True)
+    # options.set_preference("network.http.pipelining.maxrequests", 8)
+    # options.set_preference("content.switch.threshold", 250000)
+    # options.set_preference("browser.cache.memory.capacity", 65536)
+    # options.set_preference("general.startup.browser", False)
+    # options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    # options.set_preference("browser.pocket.enabled", False)
+    # options.set_preference("loop.enabled", False)
+    # options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+    # options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+    # options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+    # options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+    # options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+    # options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+    # options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+    # options.set_preference("permissions.default.image", 2) 
+    # options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+    # options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+    # options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
     driver.maximize_window()
@@ -112,7 +112,7 @@ for city, suc in shops.items():
     # Open the Page
     driver.get(f"https://www.exito.com/mercado/vinos-y-licores")    
     # Time Sleep
-    time.sleep(10)
+    time.sleep(20)
 
     findElementBy(
         By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 2)
@@ -124,11 +124,12 @@ for city, suc in shops.items():
         By.ID, "react-select-2-input", city, 2)
     findElementByAndSendKey(
         By.ID, "react-select-4-input", suc, 2)
-    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
+    findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 10)
 
     # For security reasons, we used twice the function because the page is refresh
-    # scrollDownPage(driver, 5)
-    scrollDownFullPage(driver)
+    scrollDownPage(driver, 4)
+    
+    # scrollDownFullPage(driver)
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
     # define the max clicks for page for default 30
@@ -155,7 +156,7 @@ for city, suc in shops.items():
     items = driver.find_elements(
         By.CSS_SELECTOR,  ".vtex-product-summary-2-x-element.pointer.pt3.pb4.flex.flex-column.h-100")
     # Create a frame empty for the data
-    data_exito = []
+    data = []
     # iterate over each element
     for i in items:
         name = findElementTextBySelector(
@@ -171,7 +172,7 @@ for city, suc in shops.items():
         discount = findElementNumberBySelector(
             ".exito-vtex-components-4-x-badgeDiscount.flex.items-center", "0")
 
-        data_exito.append({f"shop": "EXITO",
+        data.append({f"shop": "EXITO",
                             "city": city,
                             "location": suc,
                             "category": "Todas",
@@ -182,7 +183,7 @@ for city, suc in shops.items():
                             "price_now": price_now,
                             "discount": discount})
 
-    df = pd.DataFrame(data_exito)
+    df = pd.DataFrame(data)
     df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\exito_{city}_{suc}_data.txt',
                 index=False, encoding='utf-8')
 

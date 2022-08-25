@@ -1,0 +1,22 @@
+shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,JOSE CUERVO,0,76500,65025,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,OLMECA,0,80300,68255,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,OLMECA,0,80300,68255,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,JOSE CUERVO,0,44000,37400,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,JIMADOR,0,101900,81520,20
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,1800,0,215100,172080,20
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,JIMADOR,0,106900,85520,20
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,JOSE CUERVO,0,76500,65025,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,PATRON,0,207100,176035,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,1800,0,201300,161040,20
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,DON JULIO,0,0,241000,0
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,OLMECA,0,169900,135920,20
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,CAZADORES,0,166900,141865,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,GRAN CENTENARIO,0,102900,87465,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,MAESTRO DOBEL,0,284600,241910,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,OLMECA,0,41900,35615,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,HERRADURA,0,204100,173485,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,1800,0,201900,161520,20
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,GRAN CENTENARIO,0,150500,127925,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,GRAN CENTENARIO,0,102900,87465,15
+CAVA CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,tequilas,SIN DESCRIPCION,HERRADURA,0,254600,216410,15

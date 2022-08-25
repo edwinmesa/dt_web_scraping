@@ -11,6 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.service import Service
@@ -56,6 +57,7 @@ def findElementByAndSendKey(by, selector, key, t):
     time.sleep(t)
 
 
+
 def findElementNumberByXPATH(selector, exception):
     try:
         element = i.find_element(
@@ -75,10 +77,10 @@ def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
         # scroll by 10 on each iteration
-        driver.execute_script('window.scrollBy(0,10)')
+        driver.execute_script('window.scrollBy(0,20)')
         # reset height to the new height after scroll-triggered elements have been loaded.
         height = driver.execute_script("return document.body.scrollHeight")
-        time.sleep(0.01)
+        time.sleep(0.05)
 
 # Function Beatiful View
 
@@ -104,38 +106,38 @@ for city in shops:
             process_data()
         # Initialized by selenium driver with options and optmizer
         options = Options()
-        options.set_preference("network.http.pipelining", True)
-        options.set_preference("network.http.proxy.pipelining", True)
-        options.set_preference("network.http.pipelining.maxrequests", 8)
-        options.set_preference("content.switch.threshold", 250000)
-        options.set_preference("browser.cache.memory.capacity", 65536)
-        options.set_preference("general.startup.browser", False)
-        # Disable reader, we won't need that.
-        options.set_preference("reader.parse-on-load.enabled", False)
-        options.set_preference("browser.pocket.enabled", False)
-        options.set_preference("loop.enabled", False)
-        # Text on Toolbar instead of icons
-        options.set_preference("browser.chrome.toolbar_style", 1)
-        # Don't show thumbnails on not loaded images.
-        options.set_preference(
-            "browser.display.show_image_placeholders", False)
-        # Don't show document colors.
-        options.set_preference("browser.display.use_document_colors", False)
-        # Don't load document fonts.
-        options.set_preference("browser.display.use_document_fonts", 0)
-        # Use system colors.
-        options.set_preference("browser.display.use_system_colors", True)
-        # Autofill on forms disabled.
-        options.set_preference("browser.formfill.enable", False)
-        # Delete temprorary files.
-        options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
-        options.set_preference("permissions.default.image", 2)
-        # Disable tabs, We won't need that.
-        options.set_preference("browser.tabs.forceHide", True)
-        # Disable autofill on URL bar.
-        options.set_preference("browser.urlbar.autoFill", False)
-        # Disable autocomplete on URL bar.
-        options.set_preference("browser.urlbar.autocomplete.enabled", False)
+        # options.set_preference("network.http.pipelining", True)
+        # options.set_preference("network.http.proxy.pipelining", True)
+        # options.set_preference("network.http.pipelining.maxrequests", 8)
+        # options.set_preference("content.switch.threshold", 250000)
+        # options.set_preference("browser.cache.memory.capacity", 65536)
+        # options.set_preference("general.startup.browser", False)
+        # # Disable reader, we won't need that.
+        # options.set_preference("reader.parse-on-load.enabled", False)
+        # options.set_preference("browser.pocket.enabled", False)
+        # options.set_preference("loop.enabled", False)
+        # # Text on Toolbar instead of icons
+        # options.set_preference("browser.chrome.toolbar_style", 1)
+        # # Don't show thumbnails on not loaded images.
+        # options.set_preference(
+        #     "browser.display.show_image_placeholders", False)
+        # # Don't show document colors.
+        # options.set_preference("browser.display.use_document_colors", False)
+        # # Don't load document fonts.
+        # options.set_preference("browser.display.use_document_fonts", 0)
+        # # Use system colors.
+        # options.set_preference("browser.display.use_system_colors", True)
+        # # Autofill on forms disabled.
+        # options.set_preference("browser.formfill.enable", False)
+        # # Delete temprorary files.
+        # options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
+        # options.set_preference("permissions.default.image", 2)
+        # # Disable tabs, We won't need that.
+        # options.set_preference("browser.tabs.forceHide", True)
+        # # Disable autofill on URL bar.
+        # options.set_preference("browser.urlbar.autoFill", False)
+        # # Disable autocomplete on URL bar.
+        # options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
         driver = webdriver.Firefox(options=options)
         driver.maximize_window()
@@ -151,7 +153,8 @@ for city in shops:
             By.XPATH, "//*[@id='btn-si']", 1)
 
         findElementBy(
-            By.XPATH, "//div[@class='diageocol-diageocol-store-components-0-x-termsAndConditions']//label", 2)
+            By.CSS_SELECTOR, "#termsAndConditions", 2)
+        
         # Click for city selection
         findElementBy(
             By.XPATH, "//select[@id='ciudadAgeVerification']", 2)
@@ -159,8 +162,8 @@ for city in shops:
         findElementByAndSendKey(
             By.ID, "ciudadAgeVerification", city, 10)
 
-        # scrollDownPage(driver, 10)
-        scrollDownFullPage(driver)
+        scrollDownPage(driver, 5)
+        # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
