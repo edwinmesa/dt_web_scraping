@@ -1,6 +1,0 @@
-shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
-DIAGEO,Nacional,Store,cremas,PACK BAILEYS ORIGINAL 700ML + MOLDE PARA HORNEAR,SIN MARCA,0,0,0,
-DIAGEO,Nacional,Store,cremas,CREMA DE WHISKY BAILEYS 1000 ML,SIN MARCA,0,0,0,
-DIAGEO,Nacional,Store,cremas,CREMA DE WHISKY BAILEYS 700 ML,SIN MARCA,0,0,0,
-DIAGEO,Nacional,Store,cremas,CREMA DE WHISKY BAILEYS 375 ML,SIN MARCA,0,0,0,
-DIAGEO,Nacional,Store,cremas,CREMA DE WHISKY BAILEYS MINIS TRIPACK 300ML,SIN MARCA,0,0,0,0

@@ -1,8 +1,0 @@
-shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
-DIAGEO,Bogota,Store,tequila-y-mezcal,PACK TEQUILA DON JULIO REPOSADO X 700ML EDICIÓN DÍA DE LOS MUERTOS,SIN MARCA,0,0,244900,0
-DIAGEO,Bogota,Store,tequila-y-mezcal,PACK DON JULIO REPOSADO + 4 SHOTS MINI CATRINA,SIN MARCA,0,0,219990,0
-DIAGEO,Bogota,Store,tequila-y-mezcal,TEQUILA DON JULIO BLANCO 700 ML,SIN MARCA,0,0,199990,0
-DIAGEO,Bogota,Store,tequila-y-mezcal,TEQUILA DON JULIO REPOSADO 700 ML,SIN MARCA,0,0,219990,0
-DIAGEO,Bogota,Store,tequila-y-mezcal,TEQUILA DON JULIO AÑEJO 700 ML,SIN MARCA,0,0,244990,0
-DIAGEO,Bogota,Store,tequila-y-mezcal,TEQUILA DON JULIO 70 CRISTALINO 750 ML,SIN MARCA,0,0,339900,0
-DIAGEO,Bogota,Store,tequila-y-mezcal,MEZCAL UNION EL JOVEN 700ML,SIN MARCA,0,0,152990,0

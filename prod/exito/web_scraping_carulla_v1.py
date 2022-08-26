@@ -57,12 +57,12 @@ def findElementByAndSendKey(by, selector, key, t):
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    time.sleep(t)
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    # time.sleep(t)
+    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-def scrollDownFullPage(driver):
-    height = driver.execute_script("return document.documentElement.scrollHeight")
-    driver.execute_script("window.scrollTo(0, " + str(height) + ");")
+# def scrollDownFullPage(driver):
+    # height = driver.execute_script("return document.documentElement.scrollHeight")
+    # driver.execute_script("window.scrollTo(0, " + str(height) + ");")
     # height = driver.execute_script("return document.body.scrollHeight")
     # for i in range(height):
     #     driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
@@ -87,33 +87,33 @@ for city, suc in shops.items():
         process_data()
     # Initialized by selenium driver with options and optmizer
     options=Options()
-    # options.set_preference("network.http.pipelining", True)
-    # options.set_preference("network.http.proxy.pipelining", True)
-    # options.set_preference("network.http.pipelining.maxrequests", 8)
-    # options.set_preference("content.switch.threshold", 250000)
-    # options.set_preference("browser.cache.memory.capacity", 65536)
-    # options.set_preference("general.startup.browser", False)
-    # options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
-    # options.set_preference("browser.pocket.enabled", False)
-    # options.set_preference("loop.enabled", False)
-    # options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-    # options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-    # options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-    # options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-    # options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-    # options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-    # options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
-    # options.set_preference("permissions.default.image", 2) 
-    # options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-    # options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-    # options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+    options.set_preference("network.http.pipelining", True)
+    options.set_preference("network.http.proxy.pipelining", True)
+    options.set_preference("network.http.pipelining.maxrequests", 8)
+    options.set_preference("content.switch.threshold", 250000)
+    options.set_preference("browser.cache.memory.capacity", 65536)
+    options.set_preference("general.startup.browser", False)
+    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    options.set_preference("browser.pocket.enabled", False)
+    options.set_preference("loop.enabled", False)
+    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+    options.set_preference("permissions.default.image", 2) 
+    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
     driver.maximize_window()
 
     # Open the Page
     driver.get(f"https://www.carulla.com/vinos-y-licores")    
-    time.sleep(20)
+    time.sleep(15)
 
     findElementBy(
         By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 2)
@@ -128,12 +128,12 @@ for city, suc in shops.items():
     findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 15)
 
     # For security reasons, we used twice the function because the page is refresh
-    # scrollDownPage(driver, 4)
-    scrollDownFullPage(driver)
+    scrollDownPage(driver, 2)
+    # scrollDownFullPage(driver)
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
     # define the max clicks for page for default 30
-    max_click_SHOW_MORE = 35
+    max_click_SHOW_MORE = 40
     # count the number of clicks
     count = 1
     # This loop search the button load more and apply the click until the end of page
@@ -143,8 +143,9 @@ for city, suc in shops.items():
                 EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
             WebDriverWait(driver, 5).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
             count += 1
-            time.sleep(10)
+            time.sleep(5)
             # Bar progress -> comment
             for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                 time.sleep(1)

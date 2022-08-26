@@ -1,4 +1,0 @@
-shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
-EXITO,"Bogotá, D.c.",EXITO Calle 80,Todas,,,0,0,,0
-EXITO,"Bogotá, D.c.",EXITO Calle 80,Todas,,,0,0,,0
-EXITO,"Bogotá, D.c.",EXITO Calle 80,Todas,,,0,0,,0
