@@ -140,12 +140,11 @@ for city, suc in shops.items():
     while count <= max_click_SHOW_MORE:
         try:
             WebDriverWait(driver, 20).until(
-                EC.invisibility_of_element_located((By.XPATH, initial_XPATH)))
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-            driver.execute_script("return document.body.scrollHeight")
+                EC.visibility_of_element_located((By.XPATH, initial_XPATH)))
+            # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             WebDriverWait(driver, 20).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
+            # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
             count += 1
             time.sleep(10)
             # Bar progress -> comment
