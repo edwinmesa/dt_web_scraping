@@ -70,7 +70,7 @@ def scrollDownPage(driver, t):
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,50)') # scroll by 10 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
         time.sleep(0.05)
 
@@ -91,26 +91,26 @@ for category in categories:
         process_data()
     # Initialized by selenium driver with options and optmizer
     options=Options()
-    # options.set_preference("network.http.pipelining", True)
-    # options.set_preference("network.http.proxy.pipelining", True)
-    # options.set_preference("network.http.pipelining.maxrequests", 8)
-    # options.set_preference("content.switch.threshold", 250000)
-    # options.set_preference("browser.cache.memory.capacity", 65536)
-    # options.set_preference("general.startup.browser", False)
-    # options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
-    # options.set_preference("browser.pocket.enabled", False)
-    # options.set_preference("loop.enabled", False)
-    # options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-    # options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-    # options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-    # options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-    # options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-    # options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-    # options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
-    # options.set_preference("permissions.default.image", 2) 
-    # options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-    # options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-    # options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+    options.set_preference("network.http.pipelining", True)
+    options.set_preference("network.http.proxy.pipelining", True)
+    options.set_preference("network.http.pipelining.maxrequests", 8)
+    options.set_preference("content.switch.threshold", 250000)
+    options.set_preference("browser.cache.memory.capacity", 65536)
+    options.set_preference("general.startup.browser", False)
+    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    options.set_preference("browser.pocket.enabled", False)
+    options.set_preference("loop.enabled", False)
+    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+    options.set_preference("permissions.default.image", 2) 
+    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
     driver.maximize_window()

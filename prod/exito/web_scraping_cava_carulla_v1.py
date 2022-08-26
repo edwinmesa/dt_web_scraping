@@ -113,7 +113,7 @@ for city, suc in shops.items():
 
         # Open the Page
         driver.get(f"https://cava.carulla.com/vinos-y-licores/{category}")    
-        time.sleep(15)
+        time.sleep(20)
         
         # Selector for age
         findElementBy(
@@ -126,10 +126,10 @@ for city, suc in shops.items():
             By.ID, "react-select-2-input", city, 2)
         findElementByAndSendKey(
             By.ID, "react-select-4-input", suc, 2)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 15)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 4)
 
         # For security reasons, we used twice the function because the page is refresh
-        scrollDownPage(driver, 5)
+        scrollDownPage(driver, 15)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
@@ -140,13 +140,15 @@ for city, suc in shops.items():
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 5).until(
+                WebDriverWait(driver, 20).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                WebDriverWait(driver, 5).until(
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                driver.execute_script("return document.body.scrollHeight")     
+                WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
                 count += 1
-                time.sleep(5)
+                time.sleep(10)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)

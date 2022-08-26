@@ -100,26 +100,26 @@ for city in shops:
             process_data()
         # Initialized by selenium driver with options and optmizer
         options = Options()
-        # options.set_preference("network.http.pipelining", True)
-        # options.set_preference("network.http.proxy.pipelining", True)
-        # options.set_preference("network.http.pipelining.maxrequests", 8)
-        # options.set_preference("content.switch.threshold", 250000)
-        # options.set_preference("browser.cache.memory.capacity", 65536)
-        # options.set_preference("general.startup.browser", False)
-        # options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
-        # options.set_preference("browser.pocket.enabled", False)
-        # options.set_preference("loop.enabled", False)
-        # options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-        # options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-        # options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-        # options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-        # options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-        # options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-        # options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
-        # options.set_preference("permissions.default.image", 2)
-        # options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-        # options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-        # options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+        options.set_preference("network.http.pipelining", True)
+        options.set_preference("network.http.proxy.pipelining", True)
+        options.set_preference("network.http.pipelining.maxrequests", 8)
+        options.set_preference("content.switch.threshold", 250000)
+        options.set_preference("browser.cache.memory.capacity", 65536)
+        options.set_preference("general.startup.browser", False)
+        options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+        options.set_preference("browser.pocket.enabled", False)
+        options.set_preference("loop.enabled", False)
+        options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+        options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+        options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+        options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+        options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+        options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+        options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+        options.set_preference("permissions.default.image", 2)
+        options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+        options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+        options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
         driver = webdriver.Firefox(options=options)
         driver.maximize_window()
@@ -128,12 +128,14 @@ for city in shops:
 
         driver.get(f"https://www.dislicores.com/{category}")
 
-        time.sleep(12)
+        time.sleep(20)
 
         # Click on Modal Window
-        findElementByAndSendKey(
-        By.ID, "downshift-0-input", "a", 2)
-
+        try:
+            findElementByAndSendKey(
+             By.ID, "downshift-0-input", "a", 2)
+        except:
+            break     
         # ActionChains(driver)
 
         # Click for city selection
@@ -149,10 +151,12 @@ for city in shops:
         findElementBy(
             By.XPATH, "//button[normalize-space()='Continuar']", 3)
 
-        scrollDownPage(driver, 4)
+        scrollDownPage(driver, 15)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
+
+
         # define the max clicks for page for default 30
         max_click_SHOW_MORE = 35
         # count the number of clicks
@@ -160,10 +164,11 @@ for city in shops:
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 5).until(
+                WebDriverWait(driver, 20).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                WebDriverWait(driver, 5).until(
+                WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
                 count += 1
                 time.sleep(10)
                 # Bar progress -> comment

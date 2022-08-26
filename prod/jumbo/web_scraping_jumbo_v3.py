@@ -11,6 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.firefox.options import Options
 # ------------------------------------------------------------------
 # TODO: functions
 # ------------------------------------------------------------------
@@ -59,8 +60,30 @@ def process_data():
 for _ in track(range(100), description='[green]Iniciando Scraping Almacenes JUMBO'):
     process_data()
 # Initialized by selenium driver
-driver = webdriver.Firefox()
-driver.maximize_window()
+    options = Options()
+    options.set_preference("network.http.pipelining", True)
+    options.set_preference("network.http.proxy.pipelining", True)
+    options.set_preference("network.http.pipelining.maxrequests", 8)
+    options.set_preference("content.switch.threshold", 250000)
+    options.set_preference("browser.cache.memory.capacity", 65536)
+    options.set_preference("general.startup.browser", False)
+    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    options.set_preference("browser.pocket.enabled", False)
+    options.set_preference("loop.enabled", False)
+    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+    options.set_preference("permissions.default.image", 2)
+    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+
+    driver = webdriver.Firefox(options=options)
+    driver.maximize_window()
 # Categories of brands that should be considered for search results
 categories = ['whisky', 'vino', 'cervezas', 'tequilas-y-piscos', 'ron']
 
