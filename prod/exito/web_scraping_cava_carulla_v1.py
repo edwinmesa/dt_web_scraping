@@ -142,11 +142,12 @@ for city, suc in shops.items():
             try:
                 WebDriverWait(driver, 20).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                driver.execute_script("return document.body.scrollHeight")     
+                # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                # driver.execute_script("return document.body.scrollHeight")
+                scrollDownPage(driver, 3)     
                 WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
+                # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
                 count += 1
                 time.sleep(10)
                 # Bar progress -> comment
@@ -164,7 +165,7 @@ for city, suc in shops.items():
         # iterate over each element
         for i in items:
             name = findElementTextBySelector(
-                ".vtex-store-components-3-x-productNameContainer.mv0.t-heading-4", "SIN DESCRIPCION")
+                ".vtex-product-summary-2-x-productBrand.vtex-product-summary-2-x-brandName.t-body", "SIN DESCRIPCION")
             brand = findElementTextBySelector(
                 ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
             price_prime = findElementNumberBySelector(

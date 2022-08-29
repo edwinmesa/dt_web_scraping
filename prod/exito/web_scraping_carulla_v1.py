@@ -54,6 +54,7 @@ def findElementByAndSendKey(by, selector, key, t):
     open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
+
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -67,52 +68,67 @@ def scrollDownPage(driver, t):
     # for i in range(height):
     #     driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
     #     height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-    #     time.sleep(0.05)  
+    #     time.sleep(0.05)
 
 # Function Beatiful View
+
+
 def process_data():
     time.sleep(0.02)
 
-# Cities for search 
-shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140', 'Medellín': 'Carulla Oviedo','Barranquilla':'Carulla Mall Plaza Buenavista'}
+
+# Cities for search
+shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140',
+         'Medellín': 'Carulla Oviedo', 'Barranquilla': 'Carulla Mall Plaza Buenavista'}
 
 # ------------------------------------------------------------------
 # TODO: Extract the data for shop EXITO
 # ------------------------------------------------------------------
 
 for city, suc in shops.items():
-# for category in categories:
+    # for category in categories:
     # Bar progress -> comment
     for _ in track(range(100), description=f'[green]Iniciando Scraping en Carulla ciudad: {city} sucursal: {suc}'):
         process_data()
     # Initialized by selenium driver with options and optmizer
-    options=Options()
+    options = Options()
     options.set_preference("network.http.pipelining", True)
     options.set_preference("network.http.proxy.pipelining", True)
     options.set_preference("network.http.pipelining.maxrequests", 8)
     options.set_preference("content.switch.threshold", 250000)
     options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
-    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    # Disable reader, we won't need that.
+    options.set_preference("reader.parse-on-load.enabled", False)
     options.set_preference("browser.pocket.enabled", False)
     options.set_preference("loop.enabled", False)
-    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
-    options.set_preference("permissions.default.image", 2) 
-    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+    # Text on Toolbar instead of icons
+    options.set_preference("browser.chrome.toolbar_style", 1)
+    # Don't show thumbnails on not loaded images.
+    options.set_preference("browser.display.show_image_placeholders", False)
+    # Don't show document colors.
+    options.set_preference("browser.display.use_document_colors", False)
+    # Don't load document fonts.
+    options.set_preference("browser.display.use_document_fonts", 0)
+    # Use system colors.
+    options.set_preference("browser.display.use_system_colors", True)
+    # Autofill on forms disabled.
+    options.set_preference("browser.formfill.enable", False)
+    # Delete temprorary files.
+    options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
+    options.set_preference("permissions.default.image", 2)
+    # Disable tabs, We won't need that.
+    options.set_preference("browser.tabs.forceHide", True)
+    # Disable autofill on URL bar.
+    options.set_preference("browser.urlbar.autoFill", False)
+    # Disable autocomplete on URL bar.
+    options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
     driver = webdriver.Firefox(options=options)
     driver.maximize_window()
 
     # Open the Page
-    driver.get(f"https://www.carulla.com/vinos-y-licores")    
+    driver.get(f"https://www.carulla.com/vinos-y-licores")
     time.sleep(20)
 
     findElementBy(
@@ -140,11 +156,18 @@ for city, suc in shops.items():
     while count <= max_click_SHOW_MORE:
         try:
             WebDriverWait(driver, 20).until(
-                EC.visibility_of_element_located((By.XPATH, initial_XPATH)))
-            # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
+
+            # driver.execute_script(
+            #     "window.scrollTo(0, document.body.scrollHeight);")
+
+            driver.execute_script("return document.body.scrollHeight")
+
             WebDriverWait(driver, 20).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-            # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
+
+            # driver.execute_script(
+            #     "window.scrollTo(0, document.body.scrollHeight);")
             count += 1
             time.sleep(10)
             # Bar progress -> comment
@@ -166,7 +189,7 @@ for city, suc in shops.items():
         brand = findElementTextBySelector(
             ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
         price_prime = findElementNumberBySelector(
-            ".exito-vtex-components-4-x-valuePLPAllied", "0")    
+            ".exito-vtex-components-4-x-valuePLPAllied", "0")
         price_regular = findElementNumberBySelector(
             ".exito-vtex-components-4-x-list-price.t-mini.ttn.strike", "0")
         price_now = findElementNumberBySelector(
@@ -175,19 +198,19 @@ for city, suc in shops.items():
             ".exito-vtex-components-4-x-badgeDiscount.flex.items-center", "0")
 
         data.append({f"shop": "CARULLA",
-                            "city": city,
-                            "location": suc,
-                            "category": "Todas",
-                            "name": name,
-                            "brand": brand,
-                            "price_prime": price_prime,
-                            "price_regular": price_regular,
-                            "price_now": price_now,
-                            "discount": discount})
+                     "city": city,
+                     "location": suc,
+                     "category": "Todas",
+                     "name": name,
+                     "brand": brand,
+                     "price_prime": price_prime,
+                     "price_regular": price_regular,
+                     "price_now": price_now,
+                     "discount": discount})
 
     df = pd.DataFrame(data)
     df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\carulla_{city}_{suc}_data.txt',
-                index=False, encoding='utf-8')
+              index=False, encoding='utf-8')
 
     time.sleep(1)
     driver.quit()

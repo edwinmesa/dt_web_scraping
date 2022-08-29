@@ -1,9 +1,13 @@
 shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,CERVEZA SIXPACK CORONITA CORONA 1260 ML,CORONA,0,17100,13680,20
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,CERVEZA X 6 LATA DORADA CLUB COLOMBIA 1980 ML,CLUB COLOMBIA,0,15900,11925,25
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,CERVEZA SIXPACK COSTENA 1980 ML,COSTENA,0,0,9500,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,CERVEZA SIXPACK CORONA 2130 ML,CORONA,0,25500,20400,20
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,WHISKY BUCHANANS DELUXE X 750 ML,BUCHANAN S,0,0,153000,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,CERVEZA BELGICA SIXPACK STELLA ARTOIS 1980 ML,STELLA ARTOIS,0,25700,20560,20
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,CERVEZA SIXPACK DOBLE MALTA CLUB COLOMBIA 1980 ML,CLUB COLOMBIA,0,0,15700,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,WHISKY BUCHANANS MASTER X 750 ML,BUCHANAN S,0,0,169900,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,,,
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,0,,0
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,,,
+CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,Todas,,,0,,,0

@@ -1,0 +1,71 @@
+shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,165000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,280000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,850000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BUCHANAN S,0,215600,172480,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,689900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,125000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JACK DANIELS,0,125200,125000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,185000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JACK DANIELS,0,123100,123000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,MACALLAN,0,0,347800,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BUCHANAN S,0,0,80000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,191900,153520,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JACK DANIELS,0,124000,99200,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,HAIG CLUB,0,0,39900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,60000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GLENLIVET,0,172900,138320,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,SOMETHING,0,0,59900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,OLD PARR,0,0,130000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,145900,116720,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BLACK AND WHITE,0,0,50000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JAMESON,0,85900,73015,15
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,SOMETHING,0,0,79900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JACK DANIELS,0,61800,49440,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GLENLIVET,0,158900,111230,30
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,OLD PARR,0,165000,140250,15
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,263000,210400,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,160000,128000,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,73900,59120,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,158900,127120,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,122900,98320,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,86200,73270,15
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BULLEIT,0,145600,116480,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GLENFIDDICH,0,167900,142715,15
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GLENMORANGIE,0,0,235200,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,SINGLETON,0,0,229000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GRANT'S,0,73900,62815,15
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,THE FAMOUS GROUSE,0,0,64600,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,ROYAL SALUTE,0,827900,703715,15
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GLENMORANGIE,0,0,171900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,SINGLETON,0,0,359000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,184900,147920,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,IWAI,0,0,360100,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,OLD PARR,0,0,95000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GENTLEMAN,0,0,160700,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GLENFIDDICH,0,0,244000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BALLANTINES,0,0,58500,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,PASSPORT,0,0,44900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,40000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,DEWARS,0,0,293700,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GRANT'S,0,56900,48365,15
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GLENLIVET,0,592900,474320,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,HIGHLAND PARK,0,226300,203670,10
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CHIVAS REGAL,0,79900,63920,20
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,CLAN MACGREGOR,0,0,32500,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,TULLAMORE DEW,0,0,77900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,HAIG SUPREME,0,69900,52425,25
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BLACK AND WHITE,0,0,27000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,TALISKER,0,0,216400,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,WILLIAM LAWSON,0,0,43300,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,SOMETHING,0,0,39900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,GRANT'S,0,0,71900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,HIGHLAND PARK,0,248200,223380,10
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,DEWARS,0,0,725100,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BALLANTINES,0,0,110900,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,THE GLENROTHES,0,271900,244710,10
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHN THOMAS,0,0,46600,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,DALWHINNIE,0,0,250000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,ABERFELDY,0,360700,324630,10
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,JOHNNIE WALKER.,0,0,60000,0
+CAVA CARULLA,Barranquilla,Carulla Mall Plaza Buenavista,whisky,SIN DESCRIPCION,BULLEIT,0,0,155000,0

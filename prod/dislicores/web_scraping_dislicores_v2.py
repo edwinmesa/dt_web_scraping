@@ -12,7 +12,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver import Firefox
@@ -65,17 +65,20 @@ def findElementByAndSendKey(by, selector, key, t):
 
 def scrollDownPage(driver, t):
     time.sleep(t)
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    javaScript = "window.scrollBy(0, 1000);"
+    driver.execute_script(javaScript)
+    # time.sleep(t)
+    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
         # scroll by 10 on each iteration
-        driver.execute_script('window.scrollBy(0,20)')
+        driver.execute_script('window.scrollBy(0,10)')
         # reset height to the new height after scroll-triggered elements have been loaded.
         height = driver.execute_script("return document.body.scrollHeight")
-        time.sleep(0.05)
+        time.sleep(0.0005)
 
 # Function Beatiful View
 
@@ -122,13 +125,16 @@ for city in shops:
         options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
         driver = webdriver.Firefox(options=options)
+        # driver.maximize_window()
+        driver.set_window_position(2000,0)
+        # driver.set_window_size(920, 640)
         driver.maximize_window()
 
         # Open the Page
 
         driver.get(f"https://www.dislicores.com/{category}")
 
-        time.sleep(20)
+        time.sleep(8)
 
         # Click on Modal Window
         try:
@@ -151,12 +157,10 @@ for city in shops:
         findElementBy(
             By.XPATH, "//button[normalize-space()='Continuar']", 3)
 
-        scrollDownPage(driver, 15)
+        scrollDownPage(driver, 5)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
-
-
         # define the max clicks for page for default 30
         max_click_SHOW_MORE = 35
         # count the number of clicks
@@ -164,18 +168,18 @@ for city in shops:
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 20).until(
+                WebDriverWait(driver, 30).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                WebDriverWait(driver, 20).until(
-                    EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
+                scrollDownPage(driver, 1)    
+                WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
+                # to click on No button
                 count += 1
-                time.sleep(10)
+                # time.sleep(10)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
 
-            except TimeoutException:
+            except ElementClickInterceptedException:
                 break
 
         # Search the elements of the page
