@@ -103,13 +103,13 @@ for city in shops:
             process_data()
         # Initialized by selenium driver with options and optmizer
         options = Options()
-        options.set_preference("network.http.pipelining", True)
-        options.set_preference("network.http.proxy.pipelining", True)
-        options.set_preference("network.http.pipelining.maxrequests", 8)
-        options.set_preference("content.switch.threshold", 250000)
-        options.set_preference("browser.cache.memory.capacity", 65536)
-        options.set_preference("general.startup.browser", False)
-        options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+        # options.set_preference("network.http.pipelining", True)
+        # options.set_preference("network.http.proxy.pipelining", True)
+        # options.set_preference("network.http.pipelining.maxrequests", 8)
+        # options.set_preference("content.switch.threshold", 250000)
+        # options.set_preference("browser.cache.memory.capacity", 65536)
+        # options.set_preference("general.startup.browser", False)
+        # options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
         options.set_preference("browser.pocket.enabled", False)
         options.set_preference("loop.enabled", False)
         options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
@@ -168,10 +168,11 @@ for city in shops:
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 30).until(
+                scrollDownPage(driver, 3)
+                WebDriverWait(driver, 5).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                scrollDownPage(driver, 1)    
-                WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
+                scrollDownPage(driver, 3)    
+                WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 # to click on No button
                 count += 1
                 # time.sleep(10)
@@ -220,5 +221,5 @@ for city in shops:
         time.sleep(1)
         driver.quit()
 
-time.sleep(3)
+time.sleep(10)
 driver.quit()

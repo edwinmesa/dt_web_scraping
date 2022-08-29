@@ -11,7 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver import Firefox
@@ -56,8 +56,11 @@ def findElementByAndSendKey(by, selector, key, t):
 
 
 def scrollDownPage(driver, t):
+    # time.sleep(t)
+    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(t)
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    javaScript = "window.scrollBy(0, 1000);"
+    driver.execute_script(javaScript)
     # time.sleep(t)
     # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
@@ -144,7 +147,7 @@ for city, suc in shops.items():
     findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 4)
 
     # For security reasons, we used twice the function because the page is refresh
-    scrollDownPage(driver, 15)
+    scrollDownPage(driver, 5)
     # scrollDownFullPage(driver)
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
@@ -155,26 +158,19 @@ for city, suc in shops.items():
     # This loop search the button load more and apply the click until the end of page
     while count <= max_click_SHOW_MORE:
         try:
-            WebDriverWait(driver, 20).until(
+            scrollDownPage(driver, 1)
+            WebDriverWait(driver, 5).until(
                 EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-
-            # driver.execute_script(
-            #     "window.scrollTo(0, document.body.scrollHeight);")
-
-            driver.execute_script("return document.body.scrollHeight")
-
-            WebDriverWait(driver, 20).until(
+            scrollDownPage(driver, 1)
+            WebDriverWait(driver, 5).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-
-            # driver.execute_script(
-            #     "window.scrollTo(0, document.body.scrollHeight);")
+            # to click on No button
             count += 1
-            time.sleep(10)
+            # time.sleep(10)
             # Bar progress -> comment
             for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                 time.sleep(1)
-
-        except TimeoutException:
+        except ElementClickInterceptedException:
             break
 
     # Search the elements of the page
