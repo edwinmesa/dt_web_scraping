@@ -2,4 +2,4 @@
 **/.log
 **.log
 prod/geckodriver.log
-# prod/data/**.txt
+prod/data/**.txt

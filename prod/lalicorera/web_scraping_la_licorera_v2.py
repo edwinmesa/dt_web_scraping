@@ -72,7 +72,7 @@ def scrollDownFullPage(driver):
     for i in range(height):
         driver.execute_script('window.scrollBy(0,50)') # scroll by 10 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-        time.sleep(0.09)
+        time.sleep(0.06)
 
 # Function Beatiful View
 def process_data():
