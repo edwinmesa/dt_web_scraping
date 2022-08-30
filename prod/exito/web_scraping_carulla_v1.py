@@ -95,11 +95,11 @@ for city, suc in shops.items():
         process_data()
     # Initialized by selenium driver with options and optmizer
     options = Options()
-    options.set_preference("network.http.pipelining", True)
-    options.set_preference("network.http.proxy.pipelining", True)
-    options.set_preference("network.http.pipelining.maxrequests", 8)
-    options.set_preference("content.switch.threshold", 250000)
-    options.set_preference("browser.cache.memory.capacity", 65536)
+    # options.set_preference("network.http.pipelining", True)
+    # options.set_preference("network.http.proxy.pipelining", True)
+    # options.set_preference("network.http.pipelining.maxrequests", 8)
+    # options.set_preference("content.switch.threshold", 250000)
+    # options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
     # Disable reader, we won't need that.
     options.set_preference("reader.parse-on-load.enabled", False)
@@ -158,10 +158,10 @@ for city, suc in shops.items():
     # This loop search the button load more and apply the click until the end of page
     while count <= max_click_SHOW_MORE:
         try:
-            scrollDownPage(driver, 1)
+            scrollDownPage(driver, 3)
             WebDriverWait(driver, 5).until(
                 EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-            scrollDownPage(driver, 1)
+            scrollDownPage(driver, 3)
             WebDriverWait(driver, 5).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
             # to click on No button
