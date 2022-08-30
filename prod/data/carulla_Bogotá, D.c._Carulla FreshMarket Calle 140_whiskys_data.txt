@@ -1,9 +1,0 @@
-shop,city,location,category,name,brand,price_prime,price_regular,price_now,discount
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,WHISKY BUCHANANS DELUXE X 750 ML,SIN MARCA,0,0,0,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,WHISKY 12 AÑOS GLENFIDDICH 750 ML,SIN MARCA,0,0,0,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,CHIVAS EXTRA 13 700 CHIVAS REGAL 700 ML,SIN MARCA,0,0,0,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,WHISKY STAND TRIPLE WOOD GRANTS 750 ML,SIN MARCA,0,0,0,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,THE GLENLIVET 12 GLENLIVET 700 ML,SIN MARCA,0,0,0,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,WHISKEY HONEY JACK DANIELS 750 ML,SIN MARCA,0,0,0,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,TEQUILA SILVER JOSE CUERVO 750 ML,SIN MARCA,0,0,0,0
-CARULLA,"Bogotá, D.c.",Carulla FreshMarket Calle 140,whiskys,TEQUILA REPOSADO ESPECIAL JOSE CUERVO 750 ML,SIN MARCA,0,0,0,0
