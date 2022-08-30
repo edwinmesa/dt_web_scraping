@@ -11,7 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import ElementClickInterceptedException
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver import Firefox
@@ -55,30 +55,15 @@ def findElementByAndSendKey(by, selector, key, t):
     time.sleep(t)
 
 
-def scrollDownPage(driver, t):
-    # time.sleep(t)
-    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+def scrollDownPage(t):
     time.sleep(t)
-    javaScript = "window.scrollBy(0, 1000);"
-    driver.execute_script(javaScript)
-    # time.sleep(t)
-    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-# def scrollDownFullPage(driver):
-    # height = driver.execute_script("return document.documentElement.scrollHeight")
-    # driver.execute_script("window.scrollTo(0, " + str(height) + ");")
-    # height = driver.execute_script("return document.body.scrollHeight")
-    # for i in range(height):
-    #     driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
-    #     height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-    #     time.sleep(0.05)
-
-# Function Beatiful View
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    # javaScript = "window.scrollBy(0, 1000);"
+    # driver.execute_script(javaScript)
 
 
 def process_data():
     time.sleep(0.02)
-
 
 # Cities for search
 categories = ['whisky', 'vinos','cervezas', 'tequilas', 'ron'] 
@@ -92,43 +77,9 @@ shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140',
 
 for city, suc in shops.items():
     for category in categories:
-        # Bar progress -> comment
         for _ in track(range(100), description=f'[green]Iniciando Scraping en Carulla ciudad: {city} sucursal: {suc} categoria: {category}]'):
             process_data()
-        # Initialized by selenium driver with options and optmizer
         options = Options()
-        options.set_preference("network.http.pipelining", True)
-        options.set_preference("network.http.proxy.pipelining", True)
-        options.set_preference("network.http.pipelining.maxrequests", 8)
-        options.set_preference("content.switch.threshold", 250000)
-        options.set_preference("browser.cache.memory.capacity", 65536)
-        options.set_preference("general.startup.browser", False)
-        # Disable reader, we won't need that.
-        options.set_preference("reader.parse-on-load.enabled", False)
-        options.set_preference("browser.pocket.enabled", False)
-        options.set_preference("loop.enabled", False)
-        # Text on Toolbar instead of icons
-        options.set_preference("browser.chrome.toolbar_style", 1)
-        # Don't show thumbnails on not loaded images.
-        options.set_preference("browser.display.show_image_placeholders", False)
-        # Don't show document colors.
-        options.set_preference("browser.display.use_document_colors", False)
-        # Don't load document fonts.
-        options.set_preference("browser.display.use_document_fonts", 0)
-        # Use system colors.
-        options.set_preference("browser.display.use_system_colors", True)
-        # Autofill on forms disabled.
-        options.set_preference("browser.formfill.enable", False)
-        # Delete temprorary files.
-        options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
-        options.set_preference("permissions.default.image", 2)
-        # Disable tabs, We won't need that.
-        options.set_preference("browser.tabs.forceHide", True)
-        # Disable autofill on URL bar.
-        options.set_preference("browser.urlbar.autoFill", False)
-        # Disable autocomplete on URL bar.
-        options.set_preference("browser.urlbar.autocomplete.enabled", False)
-
         driver = webdriver.Firefox(options=options)
         driver.maximize_window()
 
@@ -149,31 +100,57 @@ for city, suc in shops.items():
         findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 2)
 
         # For security reasons, we used twice the function because the page is refresh
-        scrollDownPage(driver, 15)
+        scrollDownPage(15)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
+
+        # WebDriverWait(driver, 100).until(EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
+        # max_click_SHOW_MORE = 5
+        # count = 1 
+        # while count <= max_click_SHOW_MORE:
+        #     try:
+        #         time.sleep(20)
+        #         new_XPATH = initial_XPATH[:67] + str(count) + initial_XPATH[67:]
+        #         WebDriverWait(driver, 100).until(EC.visibility_of_element_located((By.XPATH, new_XPATH))).click()
+        #         print("Button clicked #", count+1)
+        #         count += 1
+        #     except TimeoutException:
+        #         break
         # define the max clicks for page for default 30
         max_click_SHOW_MORE = 25
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page
+        scrollDownPage(3)
+        scrollDownPage(3)
+        scrollDownPage(3)
+        WebDriverWait(driver, 100).until(EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
         while count <= max_click_SHOW_MORE:
             try:
-                scrollDownPage(driver, 2)
+                scrollDownPage(2)
                 WebDriverWait(driver, 5).until(
-                    EC.visibility_of_element_located((By.XPATH, initial_XPATH)))
+                    EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
                 # scrollDownPage(driver, 2)
                 WebDriverWait(driver, 5).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 # to click on No button
                 count += 1
-                time.sleep(1)
+                # time.sleep(1)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
             except ElementClickInterceptedException:
                 break
+
+        # try:
+        #     for i in range(1000):
+        #         load_more_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, XPATH)))
+        #     time.sleep(3)
+        #     load_more_button.click()
+        # except:
+        #     pass
+        #     print("task load more button completed")    
 
         # Search the elements of the page
         items = driver.find_elements(
