@@ -37,29 +37,28 @@ def findElementNumberBySelector(selector, exception):
         element = exception
     return element
 
+
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
-        height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-        time.sleep(0.05)  
-
+        # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,20)')
+        # reset height to the new height after scroll-triggered elements have been loaded.
+        height = driver.execute_script("return document.body.scrollHeight")
+        time.sleep(0.05)
 
 # Function Beatiful View
-
-
 def process_data():
     time.sleep(0.02)
 
-# ----------------------------------------------------------------
-# TODO: add support for the WebDriver
-# ----------------------------------------------------------------
 
-
-# Bar progress -> comment
-for _ in track(range(100), description='[green]Iniciando Scraping Almacenes JUMBO'):
-    process_data()
-# Initialized by selenium driver
+# Categories of brands that should be considered for search results
+categories = ['whisky', 'vino', 'cervezas', 'tequilas-y-piscos', 'ron']
+for category in categories:
+    # Bar progress -> comment
+    for _ in track(range(100), description=f'[yellow]Busqueda por la Categoria : {category}'):
+        process_data()
+    # Initialized by selenium driver
     options = Options()
     options.set_preference("network.http.pipelining", True)
     options.set_preference("network.http.proxy.pipelining", True)
@@ -67,36 +66,38 @@ for _ in track(range(100), description='[green]Iniciando Scraping Almacenes JUMB
     options.set_preference("content.switch.threshold", 250000)
     options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
-    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    # Disable reader, we won't need that.
+    options.set_preference("reader.parse-on-load.enabled", False)
     options.set_preference("browser.pocket.enabled", False)
     options.set_preference("loop.enabled", False)
-    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+    # Text on Toolbar instead of icons
+    options.set_preference("browser.chrome.toolbar_style", 1)
+    # Don't show thumbnails on not loaded images.
+    options.set_preference("browser.display.show_image_placeholders", False)
+    # Don't show document colors.
+    options.set_preference("browser.display.use_document_colors", False)
+    # Don't load document fonts.
+    options.set_preference("browser.display.use_document_fonts", 0)
+    # Use system colors.
+    options.set_preference("browser.display.use_system_colors", True)
+    # Autofill on forms disabled.
+    options.set_preference("browser.formfill.enable", False)
+    # Delete temprorary files.
+    options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
     options.set_preference("permissions.default.image", 2)
-    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+    # Disable tabs, We won't need that.
+    options.set_preference("browser.tabs.forceHide", True)
+    # Disable autofill on URL bar.
+    options.set_preference("browser.urlbar.autoFill", False)
+    # Disable autocomplete on URL bar.
+    options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
     driver = webdriver.Firefox(options=options)
     driver.maximize_window()
-# Categories of brands that should be considered for search results
-categories = ['whisky', 'vino', 'cervezas', 'tequilas-y-piscos', 'ron']
-
-# ------------------------------------------------------------------
-# TODO: Extract the data for shop JUMBO
-# ------------------------------------------------------------------
-for category in categories:
-    # Bar progress -> comment
-    for _ in track(range(100), description=f'[yellow]Busqueda por la Categoria : {category}'):
-        process_data()
 
     driver.get(
         f"https://www.tiendasjumbo.co/supermercado/vinos-y-licores/{category}")
+
     time.sleep(15)
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
@@ -107,9 +108,9 @@ for category in categories:
     # This loop search the button load more and apply the click until the end of page
     while count <= max_click_SHOW_MORE:
         try:
-            WebDriverWait(driver, 5).until(
+            WebDriverWait(driver, 30).until(
                 EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
-            WebDriverWait(driver, 5).until(
+            WebDriverWait(driver, 20).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
             count += 1
             time.sleep(10)
@@ -141,18 +142,20 @@ for category in categories:
             ".tiendasjumboqaio-jumbo-minicart-2-x-containerPercentageFlag", "0")
 
         data.append({"shop": "JUMBO",
-                           "city": "Medellin",
-                           "location": "Nacional",
-                           "category": category,
-                           "name": name,
-                           "brand": brand,
-                           "price_prime": price_prime,
-                           "price_regular": price_regular,
-                           "price_now": price_now,
-                           "discount": discount})
+                     "city": "Medellin",
+                     "location": "Nacional",
+                     "category": category,
+                     "name": name,
+                     "brand": brand,
+                     "price_prime": price_prime,
+                     "price_regular": price_regular,
+                     "price_now": price_now,
+                     "discount": discount})
     df = pd.DataFrame(data)
     df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\jumbo_medellin_{category}_data.txt',
               index=False, encoding='utf-8')
+    time.sleep(1)
+    driver.quit()
 
 time.sleep(3)
 driver.quit()
