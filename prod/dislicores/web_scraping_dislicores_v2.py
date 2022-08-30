@@ -12,7 +12,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import ElementClickInterceptedException
+from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver import Firefox
@@ -55,20 +55,9 @@ def findElementByAndSendKey(by, selector, key, t):
     open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
-
-# def ActionChains(driver):
-#     ActionChains(driver)\
-#         .key_down(Keys.SHIFT)\
-#         .send_keys("abc")\
-#         .perform()
-
-
 def scrollDownPage(driver, t):
     time.sleep(t)
-    javaScript = "window.scrollBy(0, 1000);"
-    driver.execute_script(javaScript)
-    # time.sleep(t)
-    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 
 def scrollDownFullPage(driver):
@@ -81,7 +70,6 @@ def scrollDownFullPage(driver):
         time.sleep(0.0005)
 
 # Function Beatiful View
-
 
 def process_data():
     time.sleep(0.02)
@@ -103,13 +91,13 @@ for city in shops:
             process_data()
         # Initialized by selenium driver with options and optmizer
         options = Options()
-        # options.set_preference("network.http.pipelining", True)
-        # options.set_preference("network.http.proxy.pipelining", True)
+        options.set_preference("network.http.pipelining", True)
+        options.set_preference("network.http.proxy.pipelining", True)
         # options.set_preference("network.http.pipelining.maxrequests", 8)
         # options.set_preference("content.switch.threshold", 250000)
         # options.set_preference("browser.cache.memory.capacity", 65536)
-        # options.set_preference("general.startup.browser", False)
-        # options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+        options.set_preference("general.startup.browser", False)
+        options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
         options.set_preference("browser.pocket.enabled", False)
         options.set_preference("loop.enabled", False)
         options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
@@ -134,7 +122,7 @@ for city in shops:
 
         driver.get(f"https://www.dislicores.com/{category}")
 
-        time.sleep(8)
+        time.sleep(10)
 
         # Click on Modal Window
         try:
@@ -155,7 +143,7 @@ for city in shops:
             By.XPATH, "//span[@class='dislicoresqa-custom-app-2-x-AgeVerification_a_checkbox_checkmark']", 2)
         # Click button continue
         findElementBy(
-            By.XPATH, "//button[normalize-space()='Continuar']", 3)
+            By.XPATH, "//button[normalize-space()='Continuar']", 5)
 
         scrollDownPage(driver, 5)
         # scrollDownFullPage(driver)
@@ -168,19 +156,18 @@ for city in shops:
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                scrollDownPage(driver, 3)
-                WebDriverWait(driver, 5).until(
+                WebDriverWait(driver, 30).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                scrollDownPage(driver, 3)    
-                WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
+                time.sleep(5)       
+                WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 # to click on No button
                 count += 1
-                # time.sleep(10)
+                time.sleep(2)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
 
-            except ElementClickInterceptedException:
+            except TimeoutException:
                 break
 
         # Search the elements of the page
