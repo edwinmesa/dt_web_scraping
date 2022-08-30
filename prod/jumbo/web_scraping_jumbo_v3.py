@@ -62,9 +62,9 @@ for category in categories:
     options = Options()
     options.set_preference("network.http.pipelining", True)
     options.set_preference("network.http.proxy.pipelining", True)
-    options.set_preference("network.http.pipelining.maxrequests", 8)
-    options.set_preference("content.switch.threshold", 250000)
-    options.set_preference("browser.cache.memory.capacity", 65536)
+    # options.set_preference("network.http.pipelining.maxrequests", 8)
+    # options.set_preference("content.switch.threshold", 250000)
+    # options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
     # Disable reader, we won't need that.
     options.set_preference("reader.parse-on-load.enabled", False)
@@ -102,18 +102,19 @@ for category in categories:
 
     initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
     # define the max clicks for page for default 30
-    max_click_SHOW_MORE = 35
+    max_click_SHOW_MORE = 45
     # count the number of clicks
     count = 1
     # This loop search the button load more and apply the click until the end of page
     while count <= max_click_SHOW_MORE:
         try:
-            WebDriverWait(driver, 30).until(
+            WebDriverWait(driver, 60).until(
                 EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
-            WebDriverWait(driver, 20).until(
+            time.sleep(10)    
+            WebDriverWait(driver, 30).until(
                 EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
             count += 1
-            time.sleep(10)
+            time.sleep(5)
             # Bar progress -> comment
             for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                 time.sleep(1)
