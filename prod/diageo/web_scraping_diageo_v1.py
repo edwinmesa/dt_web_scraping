@@ -12,6 +12,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.service import Service
@@ -104,49 +106,18 @@ for city in shops:
         # Bar progress -> comment
         for _ in track(range(100), description=f'[green]Iniciando Scraping en Diageo categoria: {category} en la ciudad: {city}'):
             process_data()
-        # Initialized by selenium driver with options and optmizer
-        options = Options()
-        options.set_preference("network.http.pipelining", True)
-        options.set_preference("network.http.proxy.pipelining", True)
-        options.set_preference("network.http.pipelining.maxrequests", 8)
-        options.set_preference("content.switch.threshold", 250000)
-        options.set_preference("browser.cache.memory.capacity", 65536)
-        options.set_preference("general.startup.browser", False)
-        # Disable reader, we won't need that.
-        options.set_preference("reader.parse-on-load.enabled", False)
-        options.set_preference("browser.pocket.enabled", False)
-        options.set_preference("loop.enabled", False)
-        # Text on Toolbar instead of icons
-        options.set_preference("browser.chrome.toolbar_style", 1)
-        # Don't show thumbnails on not loaded images.
-        options.set_preference(
-            "browser.display.show_image_placeholders", False)
-        # Don't show document colors.
-        options.set_preference("browser.display.use_document_colors", False)
-        # Don't load document fonts.
-        options.set_preference("browser.display.use_document_fonts", 0)
-        # Use system colors.
-        options.set_preference("browser.display.use_system_colors", True)
-        # Autofill on forms disabled.
-        options.set_preference("browser.formfill.enable", False)
-        # Delete temprorary files.
-        options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
-        options.set_preference("permissions.default.image", 2)
-        # Disable tabs, We won't need that.
-        options.set_preference("browser.tabs.forceHide", True)
-        # Disable autofill on URL bar.
-        options.set_preference("browser.urlbar.autoFill", False)
-        # Disable autocomplete on URL bar.
-        options.set_preference("browser.urlbar.autocomplete.enabled", False)
-
-        driver = webdriver.Firefox(options=options)
-        driver.maximize_window()
+        options = webdriver.ChromeOptions()
+        # options.add_argument("--headless")
+        options.add_argument("start-maximized")
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+        # driver.maximize_window()
 
         # Open the Page
 
         driver.get(f"https://co.thebar.com/{category}")
 
-        time.sleep(7)
+        time.sleep(10)
 
         # Click on Modal Window
         findElementBy(
@@ -173,13 +144,13 @@ for city in shops:
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 5).until(
+                WebDriverWait(driver, 30).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                WebDriverWait(driver, 5).until(
+                time.sleep(5)    
+                WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
                 count += 1
-                time.sleep(10)
+                time.sleep(2)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
