@@ -72,7 +72,7 @@ def scrollDownFullPage(driver):
     for i in range(height):
         driver.execute_script('window.scrollBy(0,50)') # scroll by 10 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-        time.sleep(0.05)
+        time.sleep(0.09)
 
 # Function Beatiful View
 def process_data():
@@ -113,6 +113,7 @@ for category in categories:
     options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
+    driver.set_window_position(2000,0)
     driver.maximize_window()
 
     # Open the Page
