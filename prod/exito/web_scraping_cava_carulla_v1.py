@@ -59,11 +59,9 @@ def scrollDownPage(driver, t):
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
 def scrollDownFullPage(driver):
-    # height = driver.execute_script("return document.documentElement.scrollHeight")
-    # driver.execute_script("window.scrollTo(0, " + str(height) + ");")
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
         time.sleep(0.05)  
 
@@ -83,15 +81,15 @@ shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140', 'Medellín': 'Carulla
 for city, suc in shops.items():
     for category in categories:
         # Bar progress -> comment
-        for _ in track(range(100), description=f'[green]Iniciando Scraping Almacenes CAVA Carulla en la ciudad: {city} sucursal: {suc}'):
+        for _ in track(range(100), description=f'[green]Iniciando Scraping Almacenes CAVA Carulla en la ciudad: {city} sucursal: {suc} categoria: {category}'):
             process_data()
         # Initialized by selenium driver with options and optmizer
         options=Options()
         options.set_preference("network.http.pipelining", True)
         options.set_preference("network.http.proxy.pipelining", True)
-        options.set_preference("network.http.pipelining.maxrequests", 8)
-        options.set_preference("content.switch.threshold", 250000)
-        options.set_preference("browser.cache.memory.capacity", 65536)
+        # options.set_preference("network.http.pipelining.maxrequests", 8)
+        # options.set_preference("content.switch.threshold", 250000)
+        # options.set_preference("browser.cache.memory.capacity", 65536)
         options.set_preference("general.startup.browser", False)
         options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
         options.set_preference("browser.pocket.enabled", False)
@@ -113,7 +111,7 @@ for city, suc in shops.items():
 
         # Open the Page
         driver.get(f"https://cava.carulla.com/vinos-y-licores/{category}")    
-        time.sleep(20)
+        time.sleep(12)
         
         # Selector for age
         findElementBy(
@@ -123,13 +121,13 @@ for city, suc in shops.items():
             By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 2)
         # List of cities
         findElementByAndSendKey(
-            By.ID, "react-select-2-input", city, 2)
+            By.ID, "react-select-2-input", city, 4)
         findElementByAndSendKey(
             By.ID, "react-select-4-input", suc, 2)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 4)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
 
         # For security reasons, we used twice the function because the page is refresh
-        scrollDownPage(driver, 15)
+        scrollDownPage(driver, 10)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
@@ -140,16 +138,12 @@ for city, suc in shops.items():
         # This loop search the button load more and apply the click until the end of page
         while count <= max_click_SHOW_MORE:
             try:
-                WebDriverWait(driver, 20).until(
+                WebDriverWait(driver, 30).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                # driver.execute_script("return document.body.scrollHeight")
-                scrollDownPage(driver, 3)     
-                WebDriverWait(driver, 20).until(
-                    EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-                # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")    
+                time.sleep(5)       
+                WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
-                time.sleep(10)
+                time.sleep(2)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
