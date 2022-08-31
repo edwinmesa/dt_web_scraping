@@ -1,5 +1,6 @@
 # import libraries
 import time
+import datetime
 import pandas as pd
 from rich import print as rprint
 from rich.pretty import pprint
@@ -12,6 +13,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.firefox.options import Options
+
+
 # ------------------------------------------------------------------
 # TODO: functions
 # ------------------------------------------------------------------
@@ -51,6 +54,9 @@ def scrollDownFullPage(driver):
 def process_data():
     time.sleep(0.02)
 
+# Date 
+
+today = datetime.date.today()
 
 # Categories of brands that should be considered for search results
 categories = ['whisky', 'vino', 'cervezas', 'tequilas-y-piscos', 'ron']
@@ -94,6 +100,7 @@ for category in categories:
 
     driver = webdriver.Firefox(options=options)
     driver.maximize_window()
+    driver.set_window_position(2000,0)
 
     driver.get(
         f"https://www.tiendasjumbo.co/supermercado/vinos-y-licores/{category}")
@@ -153,7 +160,7 @@ for category in categories:
                      "price_now": price_now,
                      "discount": discount})
     df = pd.DataFrame(data)
-    df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\jumbo_medellin_{category}_data.txt',
+    df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\jumbo_medellin_{category}_data_{today}.txt',
               index=False, encoding='utf-8')
     time.sleep(1)
     driver.quit()

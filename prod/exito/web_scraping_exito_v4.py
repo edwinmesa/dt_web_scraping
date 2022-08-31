@@ -1,5 +1,6 @@
 # import libraries
 import time
+import datetime
 import pandas as pd
 from rich import print as rprint
 from rich.pretty import pprint
@@ -75,6 +76,9 @@ def scrollDownFullPage(driver):
 def process_data():
     time.sleep(0.02)
 
+# Date 
+
+today = datetime.date.today() 
 
 # Categories of brands that should be considered for search results
 categories = ['whisky-ron-brandy-conac', 'vinos','cervezas', 'tequilas-ginebras-y-vodkas'] 
@@ -205,7 +209,7 @@ for city, suc in shops.items():
                          "discount": discount})
 
         df = pd.DataFrame(data)
-        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\exito_{city}_{suc}_{category}_data.txt',
+        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\exito_{city}_{suc}_{category}_data_{today}.txt',
                   index=False, encoding='utf-8')
 
         time.sleep(1)
