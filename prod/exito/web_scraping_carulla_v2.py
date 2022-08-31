@@ -55,21 +55,25 @@ def findElementByAndSendKey(by, selector, key, t):
     time.sleep(t)
 
 
-def scrollDownPage(t):
+def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    # javaScript = "window.scrollBy(0, 1000);"
-    # driver.execute_script(javaScript)
 
+def scrollDownFullPage(driver):
+    height = driver.execute_script("return document.body.scrollHeight")
+    for i in range(height):
+        driver.execute_script('window.scrollBy(0,10)') # scroll by 10 on each iteration
+        height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
+        time.sleep(0.05)  
 
+# Function Beatiful View
 def process_data():
     time.sleep(0.02)
 
-# Cities for search
+# Categories of brands that should be considered for search results
 categories = ['whisky', 'vinos','cervezas', 'tequilas', 'ron'] 
-
-shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140',
-         'Medellín': 'Carulla Oviedo', 'Barranquilla': 'Carulla Mall Plaza Buenavista'}
+# Cities for search 
+shops = {'Bogotá, D.c.': 'Carulla FreshMarket Calle 140','Medellín': 'Carulla Oviedo', 'Barranquilla': 'Carulla Mall Plaza Buenavista'}
 
 # ------------------------------------------------------------------
 # TODO: Extract the data for shop EXITO
@@ -79,13 +83,37 @@ for city, suc in shops.items():
     for category in categories:
         for _ in track(range(100), description=f'[green]Iniciando Scraping en Carulla ciudad: {city} sucursal: {suc} categoria: {category}]'):
             process_data()
-        options = Options()
+    
+        # Initialized by selenium driver with options and optmizer
+        options=Options()
+        options.set_preference("network.http.pipelining", True)
+        options.set_preference("network.http.proxy.pipelining", True)
+        # options.set_preference("network.http.pipelining.maxrequests", 8)
+        # options.set_preference("content.switch.threshold", 250000)
+        # options.set_preference("browser.cache.memory.capacity", 65536)
+        options.set_preference("general.startup.browser", False)
+        options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+        options.set_preference("browser.pocket.enabled", False)
+        options.set_preference("loop.enabled", False)
+        options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
+        options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
+        options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
+        options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
+        options.set_preference("browser.display.use_system_colors", True) # Use system colors.
+        options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
+        options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+        options.set_preference("permissions.default.image", 2) 
+        options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
+        options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
+        options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+
         driver = webdriver.Firefox(options=options)
+        driver.set_window_position(2000,0)
         driver.maximize_window()
 
         # Open the Page
         driver.get(f"https://www.carulla.com/vinos-y-licores/{category}")
-        time.sleep(15)
+        time.sleep(12)
 
         findElementBy(
             By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 2)
@@ -97,60 +125,32 @@ for city, suc in shops.items():
             By.ID, "react-select-2-input", city, 5)
         findElementByAndSendKey(
             By.ID, "react-select-4-input", suc, 2)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 2)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
 
-        # For security reasons, we used twice the function because the page is refresh
-        scrollDownPage(15)
+         # For security reasons, we used twice the function because the page is refresh
+        scrollDownPage(driver, 10)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
-
-        # WebDriverWait(driver, 100).until(EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
-        # max_click_SHOW_MORE = 5
-        # count = 1 
-        # while count <= max_click_SHOW_MORE:
-        #     try:
-        #         time.sleep(20)
-        #         new_XPATH = initial_XPATH[:67] + str(count) + initial_XPATH[67:]
-        #         WebDriverWait(driver, 100).until(EC.visibility_of_element_located((By.XPATH, new_XPATH))).click()
-        #         print("Button clicked #", count+1)
-        #         count += 1
-        #     except TimeoutException:
-        #         break
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 25
+        max_click_SHOW_MORE = 40
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page
-        scrollDownPage(3)
-        scrollDownPage(3)
-        scrollDownPage(3)
-        WebDriverWait(driver, 100).until(EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
         while count <= max_click_SHOW_MORE:
             try:
-                scrollDownPage(2)
-                WebDriverWait(driver, 5).until(
-                    EC.visibility_of_element_located((By.XPATH, initial_XPATH))).click()
-                # scrollDownPage(driver, 2)
-                WebDriverWait(driver, 5).until(
-                    EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-                # to click on No button
+                WebDriverWait(driver, 30).until(
+                    EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
+                time.sleep(5)       
+                WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
-                # time.sleep(1)
+                time.sleep(2)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
-            except ElementClickInterceptedException:
-                break
 
-        # try:
-        #     for i in range(1000):
-        #         load_more_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, XPATH)))
-        #     time.sleep(3)
-        #     load_more_button.click()
-        # except:
-        #     pass
-        #     print("task load more button completed")    
+            except TimeoutException:
+                break
 
         # Search the elements of the page
         items = driver.find_elements(
