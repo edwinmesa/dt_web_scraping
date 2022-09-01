@@ -118,7 +118,7 @@ for city in shops:
 
         driver = webdriver.Firefox(options=options)
         # driver.maximize_window()
-        driver.set_window_position(2000,0)
+        # driver.set_window_position(2000,0)
         # driver.set_window_size(920, 640)
         driver.maximize_window()
 

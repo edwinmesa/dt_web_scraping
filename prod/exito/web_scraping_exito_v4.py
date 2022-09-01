@@ -16,6 +16,8 @@ from selenium.common.exceptions import ElementClickInterceptedException, Timeout
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver import Firefox
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service as ChromeService
 # ------------------------------------------------------------------
 # TODO: functions
 # ------------------------------------------------------------------
@@ -128,9 +130,14 @@ for city, suc in shops.items():
         # Disable autocomplete on URL bar.
         options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
-        driver = webdriver.Firefox(options=options)
+        # driver = webdriver.Firefox(options=options)
         # driver.set_window_position(2000,0)
-        driver.maximize_window()
+        # driver.maximize_window()
+        options = webdriver.ChromeOptions()
+        # options.add_argument("--headless")
+        options.add_argument("start-maximized")
+        options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 
         # Open the Page
         if category == "whisky-ron-brandy-conac":

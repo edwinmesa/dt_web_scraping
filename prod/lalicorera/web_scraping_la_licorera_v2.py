@@ -119,7 +119,7 @@ for category in categories:
     options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
-    driver.set_window_position(2000,0)
+    # driver.set_window_position(2000,0)
     driver.maximize_window()
 
     # Open the Page

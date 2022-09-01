@@ -110,9 +110,9 @@ for city, suc in shops.items():
     options = Options()
     options.set_preference("network.http.pipelining", True)
     options.set_preference("network.http.proxy.pipelining", True)
-    options.set_preference("network.http.pipelining.maxrequests", 8)
-    options.set_preference("content.switch.threshold", 250000)
-    options.set_preference("browser.cache.memory.capacity", 65536)
+    # options.set_preference("network.http.pipelining.maxrequests", 8)
+    # options.set_preference("content.switch.threshold", 250000)
+    # options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
     options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
     options.set_preference("browser.pocket.enabled", False)
@@ -130,7 +130,9 @@ for city, suc in shops.items():
     options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
+    driver.set_window_position(2000,0)
     driver.maximize_window()
+    
 
     # Open the Page
     driver.get(f"https://www.olimpica.com/supermercado/licores")

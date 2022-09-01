@@ -99,8 +99,9 @@ for category in categories:
     options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
     driver = webdriver.Firefox(options=options)
-    driver.maximize_window()
     driver.set_window_position(2000,0)
+    driver.maximize_window()
+    
 
     driver.get(
         f"https://www.tiendasjumbo.co/supermercado/vinos-y-licores/{category}")
