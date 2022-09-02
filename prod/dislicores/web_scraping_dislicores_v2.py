@@ -119,8 +119,10 @@ for city in shops:
         driver = webdriver.Firefox(options=options)
         # driver.maximize_window()
         # driver.set_window_position(2000,0)
-        # driver.set_window_size(920, 640)
-        driver.maximize_window()
+        # driver.set_window_size(1180, 1000)
+        driver.set_window_position(-50,-50)
+        driver.set_window_size(960, 1050)
+        # driver.maximize_window()
 
         # Open the Page
 
@@ -130,8 +132,8 @@ for city in shops:
 
         # Click on Modal Window
         try:
-            findElementByAndSendKey(
-             By.ID, "downshift-0-input", "a", 2)
+            findElementBy(
+             By.XPATH, "//span[@class='vtex-minicart-2-x-minicartIconContainer gray relative']//*[@class=' ']", 2)
         except:
             break     
         # ActionChains(driver)

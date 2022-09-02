@@ -114,7 +114,9 @@ for city, suc in shops.items():
 
         driver = webdriver.Firefox(options=options)
         driver.set_window_position(2000,0)
-        driver.maximize_window()
+        # driver.maximize_window()
+        # driver.set_window_position(900,-50)
+        driver.set_window_size(960, 1050)
 
         # Open the Page
         driver.get(f"https://www.carulla.com/vinos-y-licores/{category}")
@@ -138,7 +140,7 @@ for city, suc in shops.items():
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 40
+        max_click_SHOW_MORE = 50
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page

@@ -130,14 +130,15 @@ for city, suc in shops.items():
         # Disable autocomplete on URL bar.
         options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
-        # driver = webdriver.Firefox(options=options)
-        # driver.set_window_position(2000,0)
+        driver = webdriver.Firefox(options=options)
+        driver.set_window_position(900,-50)
+        driver.set_window_size(960, 1050)
         # driver.maximize_window()
-        options = webdriver.ChromeOptions()
-        # options.add_argument("--headless")
-        options.add_argument("start-maximized")
-        options.add_experimental_option('excludeSwitches', ['enable-logging'])
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
+        # options = webdriver.ChromeOptions()
+        # # options.add_argument("--headless")
+        # options.add_argument("start-maximized")
+        # options.add_experimental_option('excludeSwitches', ['enable-logging'])
+        # driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 
         # Open the Page
         if category == "whisky-ron-brandy-conac":
@@ -164,7 +165,7 @@ for city, suc in shops.items():
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 40
+        max_click_SHOW_MORE = 50
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page

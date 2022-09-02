@@ -100,7 +100,9 @@ for category in categories:
 
     driver = webdriver.Firefox(options=options)
     driver.set_window_position(2000,0)
-    driver.maximize_window()
+    # driver.set_window_position(900,-50)
+    driver.set_window_size(960, 1050)
+    # driver.maximize_window()
     
 
     driver.get(
