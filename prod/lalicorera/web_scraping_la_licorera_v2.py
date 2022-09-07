@@ -71,7 +71,7 @@ def scrollDownPage(driver, t):
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,50)') # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
         time.sleep(0.06)
 
@@ -99,9 +99,9 @@ for category in categories:
     options=Options()
     options.set_preference("network.http.pipelining", True)
     options.set_preference("network.http.proxy.pipelining", True)
-    options.set_preference("network.http.pipelining.maxrequests", 8)
-    options.set_preference("content.switch.threshold", 250000)
-    options.set_preference("browser.cache.memory.capacity", 65536)
+    # options.set_preference("network.http.pipelining.maxrequests", 8)
+    # options.set_preference("content.switch.threshold", 250000)
+    # options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
     options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
     options.set_preference("browser.pocket.enabled", False)
@@ -124,7 +124,14 @@ for category in categories:
 
     # Open the Page
     driver.get(f"https://www.lalicorera.com/productos/{category}")
-    time.sleep(5)
+    time.sleep(15)
+
+    try:
+        findElementBy(
+            By.CSS_SELECTOR, ".swal2-cancel.swal2-styled", 5)
+    except:
+        break  
+
     scrollDownFullPage(driver)
 
     # Search the elements of the page
@@ -149,14 +156,15 @@ for category in categories:
 
         data.append({f"shop": "LA LICORERA",
                             "city": "Medellin",
-                            "location": "Store",
+                            "location": "Nacional",
                             "category": category,
                             "name": name,
                             "brand": brand,
                             "price_prime": price_prime,
                             "price_regular": price_regular,
                             "price_now": price_now,
-                            "discount": discount})
+                            "discount": discount,
+                            "date": today})
 
     df = pd.DataFrame(data)
     df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\la_licorera_{category}_data_{today}.txt',

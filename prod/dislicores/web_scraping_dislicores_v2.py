@@ -121,7 +121,7 @@ for city in shops:
         # driver.set_window_position(2000,0)
         # driver.set_window_size(1180, 1000)
         driver.set_window_position(-50,-50)
-        driver.set_window_size(960, 1050)
+        driver.set_window_size(1500, 1050)
         # driver.maximize_window()
 
         # Open the Page
@@ -198,14 +198,16 @@ for city in shops:
 
             data.append({f"shop": "DISLICORES",
                          "city": city,
-                         "location": "Store",
+                         "location": city,
                          "category": category,
                          "name": name,
                          "brand": brand,
                          "price_prime": price_prime,
                          "price_regular": price_regular,
                          "price_now": price_now,
-                         "discount": discount})
+                         "discount": discount,
+                         "date": today
+                         })
 
         df = pd.DataFrame(data)
         df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\dislicores_{city}_{category}_data_{today}.txt',

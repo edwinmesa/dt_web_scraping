@@ -116,8 +116,8 @@ for city, suc in shops.items():
         # driver.set_window_size(960, 1050)
         driver.set_window_position(2000,0)
         # driver.set_window_position(900,-50)
-        driver.set_window_size(960, 1050)
-        # driver.maximize_window()
+        # driver.set_window_size(960, 1050)
+        driver.maximize_window()
 
         # Open the Page
         driver.get(f"https://cava.carulla.com/vinos-y-licores/{category}")    
@@ -190,7 +190,8 @@ for city, suc in shops.items():
                                 "price_prime": price_prime,
                                 "price_regular": price_regular,
                                 "price_now": price_now,
-                                "discount": discount})
+                                "discount": discount,
+                                "date": today})
 
         df = pd.DataFrame(data)
         df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\cava_carulla_{city}_{suc}_{category}_data_{today}.txt',

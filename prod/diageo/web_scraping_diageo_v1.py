@@ -185,14 +185,16 @@ for city in shops:
 
             data.append({f"shop": "DIAGEO",
                          "city": city,
-                         "location": "Store",
+                         "location": city,
                          "category": category,
                          "name": name,
                          "brand": brand,
                          "price_prime": price_prime,
                          "price_regular": price_regular,
                          "price_now": price_now,
-                         "discount": discount})
+                         "discount": discount,
+                         "date": today
+                         })
 
         df = pd.DataFrame(data)
         df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\diageo_{city}_{category}_data_{today}.txt',

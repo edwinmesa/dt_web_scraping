@@ -131,7 +131,8 @@ for city, suc in shops.items():
 
     driver = webdriver.Firefox(options=options)
     driver.set_window_position(900,-50)
-    driver.set_window_size(960, 1050)
+    # driver.set_window_size(960, 1050)
+    driver.set_window_size(1500, 1050)
     # driver.set_window_position(2000,0)
     # driver.maximize_window()
     
@@ -172,7 +173,7 @@ for city, suc in shops.items():
         price_prime = findElementNumberBySelector(
             ".class", "0")
         price_regular = findElementNumberBySelector(
-            ".olimpica-dinamic-flags-0-x-currencyContainer", "0")
+            ".olimpica-dinamic-flags-0-x-strikePrice.false", "0")
         price_now = findElementNumberBySelector(
             ".vtex-product-price-1-x-sellingPrice--hasListPrice--dynamicF", "0")
         discount = findElementNumberBySelector(
@@ -187,7 +188,8 @@ for city, suc in shops.items():
                      "price_prime": price_prime,
                      "price_regular": price_regular,
                      "price_now": price_now,
-                     "discount": discount})
+                     "discount": discount,
+                     "date": today})
 
     df = pd.DataFrame(data)
     df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\olimpica_{city}_{suc}_data_{today}.txt',
