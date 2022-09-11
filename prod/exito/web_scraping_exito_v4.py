@@ -131,7 +131,8 @@ for city, suc in shops.items():
         options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
         driver = webdriver.Firefox(options=options)
-        driver.set_window_position(900,-50)
+        # driver.set_window_position(900,-50)
+        driver.set_window_position(2000,0)
         # driver.set_window_size(960, 1050)
         # driver.set_window_size(960, 1050)
         driver.maximize_window()
@@ -159,7 +160,7 @@ for city, suc in shops.items():
             By.ID, "react-select-2-input", city, 5)
         findElementByAndSendKey(
             By.ID, "react-select-4-input", suc, 2)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 15)
 
         # For security reasons, we used twice the function because the page is refresh
         scrollDownPage(driver, 15)
