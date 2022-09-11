@@ -119,7 +119,7 @@ for category in categories:
     options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
-    # driver.set_window_position(2000,0)
+    driver.set_window_position(2000,0)
     driver.maximize_window()
 
     # Open the Page
@@ -167,7 +167,7 @@ for category in categories:
                             "date": today})
 
     df = pd.DataFrame(data)
-    df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\la_licorera_{category}_data_{today}.txt',
+    df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\la_licorera_{category}_data_{today}.txt',
                 index=False, encoding='utf-8')
 
     time.sleep(1)

@@ -133,6 +133,7 @@ for city, suc in shops.items():
         driver = webdriver.Firefox(options=options)
         driver.set_window_position(900,-50)
         # driver.set_window_size(960, 1050)
+        # driver.set_window_size(960, 1050)
         driver.maximize_window()
         # options = webdriver.ChromeOptions()
         # # options.add_argument("--headless")
@@ -218,7 +219,7 @@ for city, suc in shops.items():
                          "date": today})
 
         df = pd.DataFrame(data)
-        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\exito_{city}_{suc}_{category}_data_{today}.txt',
+        df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\exito_{city}_{suc}_{category}_data_{today}.txt',
                   index=False, encoding='utf-8')
 
         time.sleep(1)

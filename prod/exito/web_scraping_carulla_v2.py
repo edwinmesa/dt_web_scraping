@@ -132,7 +132,7 @@ for city, suc in shops.items():
             By.ID, "react-select-2-input", city, 5)
         findElementByAndSendKey(
             By.ID, "react-select-4-input", suc, 2)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 15)
 
          # For security reasons, we used twice the function because the page is refresh
         scrollDownPage(driver, 10)
@@ -192,7 +192,7 @@ for city, suc in shops.items():
                         "date": today})
 
         df = pd.DataFrame(data)
-        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\carulla_{city}_{suc}_{category}_data_{today}.txt',
+        df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\carulla_{city}_{suc}_{category}_data_{today}.txt',
                 index=False, encoding='utf-8')
 
         time.sleep(1)

@@ -113,10 +113,11 @@ for city, suc in shops.items():
 
         driver = webdriver.Firefox(options=options)
         # driver.set_window_position(900,-50)
+        driver.set_window_position(-50,-50)
         # driver.set_window_size(960, 1050)
-        driver.set_window_position(2000,0)
+        # driver.set_window_position(2000,0)
         # driver.set_window_position(900,-50)
-        # driver.set_window_size(960, 1050)
+        # driver.set_window_size(-50, 1050)
         driver.maximize_window()
 
         # Open the Page
@@ -134,7 +135,7 @@ for city, suc in shops.items():
             By.ID, "react-select-2-input", city, 4)
         findElementByAndSendKey(
             By.ID, "react-select-4-input", suc, 2)
-        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 5)
+        findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 15)
 
         # For security reasons, we used twice the function because the page is refresh
         scrollDownPage(driver, 10)
@@ -194,7 +195,7 @@ for city, suc in shops.items():
                                 "date": today})
 
         df = pd.DataFrame(data)
-        df.to_csv(f'C:\workflow\dt_web_scraping\prod\data\cava_carulla_{city}_{suc}_{category}_data_{today}.txt',
+        df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\cava_carulla_{city}_{suc}_{category}_data_{today}.txt',
                     index=False, encoding='utf-8')
 
         time.sleep(1)
