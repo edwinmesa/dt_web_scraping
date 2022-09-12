@@ -167,6 +167,7 @@ for category in categories:
                      "location": "Nacional",
                      "category": category,
                      "name": name,
+                     "unit_measure": "",
                      "brand": brand,
                      "price_prime": price_prime,
                      "price_regular": price_regular,
@@ -174,7 +175,8 @@ for category in categories:
                      "conditional_discount": conditional_discount,
                      "conditional_discount_2": conditional_discount_2,
                      "discount": discount,
-                     "date": today})
+                     "date": today
+                     })
     df = pd.DataFrame(data)
     df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\jumbo_medellin_{category}_data_{today}.txt',
               index=False, encoding='utf-8')

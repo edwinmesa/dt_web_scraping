@@ -188,10 +188,13 @@ for city in shops:
                          "location": city,
                          "category": category,
                          "name": name,
+                         "unit_measure": "",
                          "brand": brand,
                          "price_prime": price_prime,
                          "price_regular": price_regular,
                          "price_now": price_now,
+                         "conditional_discount": "",
+                         "conditional_discount_2": "",
                          "discount": discount,
                          "date": today
                          })

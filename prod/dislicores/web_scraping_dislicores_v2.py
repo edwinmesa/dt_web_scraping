@@ -211,6 +211,7 @@ for city in shops:
                          "price_regular": price_regular,
                          "price_now": price_now,
                          "conditional_discount": conditional_discount,
+                         "conditional_discount_2": "",
                          "discount": discount,
                          "date": today
                          })

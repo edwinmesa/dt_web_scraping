@@ -41,6 +41,7 @@ def findElementNumberBySelector(selector, exception):
         element = exception
     return element
 
+
 def findElementNumberByXPATH(selector, exception):
     try:
         element = i.find_element(
@@ -48,7 +49,7 @@ def findElementNumberByXPATH(selector, exception):
         element = "".join([ch for ch in element if ch.isdigit()])
     except:
         element = exception
-    return element    
+    return element
 
 
 def findElementBy(by, selector, t):
@@ -64,28 +65,34 @@ def findElementByAndSendKey(by, selector, key, t):
     open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
+
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
+
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,20)') # scroll by 10 on each iteration
-        height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
+        # scroll by 10 on each iteration
+        driver.execute_script('window.scrollBy(0,20)')
+        # reset height to the new height after scroll-triggered elements have been loaded.
+        height = driver.execute_script("return document.body.scrollHeight")
         time.sleep(0.06)
 
 # Function Beatiful View
+
+
 def process_data():
     time.sleep(0.02)
 
 
-# Date 
+# Date
 
 today = datetime.date.today()
 
 # Categories of brands that should be considered for search results
-categories = ['whisky', 'vino','ron', 'tequila', 'cerveza'] 
+categories = ['whisky', 'vino', 'ron', 'tequila', 'cerveza']
 
 # ------------------------------------------------------------------
 # TODO: Extract the data for shop LA LICORERA
@@ -96,30 +103,41 @@ for category in categories:
     for _ in track(range(100), description=f'[green]Iniciando Scraping en La: Licorera categoria: {category}'):
         process_data()
     # Initialized by selenium driver with options and optmizer
-    options=Options()
+    options = Options()
     options.set_preference("network.http.pipelining", True)
     options.set_preference("network.http.proxy.pipelining", True)
     # options.set_preference("network.http.pipelining.maxrequests", 8)
     # options.set_preference("content.switch.threshold", 250000)
     # options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
-    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    # Disable reader, we won't need that.
+    options.set_preference("reader.parse-on-load.enabled", False)
     options.set_preference("browser.pocket.enabled", False)
     options.set_preference("loop.enabled", False)
-    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
-    options.set_preference("permissions.default.image", 2) 
-    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+    # Text on Toolbar instead of icons
+    options.set_preference("browser.chrome.toolbar_style", 1)
+    # Don't show thumbnails on not loaded images.
+    options.set_preference("browser.display.show_image_placeholders", False)
+    # Don't show document colors.
+    options.set_preference("browser.display.use_document_colors", False)
+    # Don't load document fonts.
+    options.set_preference("browser.display.use_document_fonts", 0)
+    # Use system colors.
+    options.set_preference("browser.display.use_system_colors", True)
+    # Autofill on forms disabled.
+    options.set_preference("browser.formfill.enable", False)
+    # Delete temprorary files.
+    options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
+    options.set_preference("permissions.default.image", 2)
+    # Disable tabs, We won't need that.
+    options.set_preference("browser.tabs.forceHide", True)
+    # Disable autofill on URL bar.
+    options.set_preference("browser.urlbar.autoFill", False)
+    # Disable autocomplete on URL bar.
+    options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
     driver = webdriver.Firefox(options=options)
-    driver.set_window_position(2000,0)
+    driver.set_window_position(2000, 0)
     driver.maximize_window()
 
     # Open the Page
@@ -130,7 +148,7 @@ for category in categories:
         findElementBy(
             By.CSS_SELECTOR, ".swal2-cancel.swal2-styled", 5)
     except:
-        break  
+        break
 
     scrollDownFullPage(driver)
 
@@ -146,7 +164,7 @@ for category in categories:
         brand = findElementTextBySelector(
             ".class", "SIN MARCA")
         price_prime = findElementNumberBySelector(
-            ".class", "0")    
+            ".class", "0")
         price_regular = findElementNumberBySelector(
             ".product-card-description-before", "0")
         price_now = findElementNumberByXPATH(
@@ -155,20 +173,24 @@ for category in categories:
             ".class", "0")
 
         data.append({f"shop": "LA LICORERA",
-                            "city": "Medellin",
-                            "location": "Nacional",
-                            "category": category,
-                            "name": name,
-                            "brand": brand,
-                            "price_prime": price_prime,
-                            "price_regular": price_regular,
-                            "price_now": price_now,
-                            "discount": discount,
-                            "date": today})
+                     "city": "Medellin",
+                     "location": "Nacional",
+                     "category": category,
+                     "name": name,
+                     "unit_measure": "",
+                     "brand": brand,
+                     "price_prime": price_prime,
+                     "price_regular": price_regular,
+                     "price_now": price_now,
+                     "conditional_discount": "",
+                     "conditional_discount_2": "",
+                     "discount": discount,
+                     "date": today
+                     })
 
     df = pd.DataFrame(data)
     df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\la_licorera_{category}_data_{today}.txt',
-                index=False, encoding='utf-8')
+              index=False, encoding='utf-8')
 
     time.sleep(1)
     driver.quit()

@@ -184,12 +184,16 @@ for city, suc in shops.items():
                         "location": suc,
                         "category": category,
                         "name": name,
+                        "unit_measure": "",
                         "brand": brand,
                         "price_prime": price_prime,
                         "price_regular": price_regular,
                         "price_now": price_now,
+                        "conditional_discount": "",
+                        "conditional_discount_2": "",
                         "discount": discount,
-                        "date": today})
+                        "date": today
+                        })
 
         df = pd.DataFrame(data)
         df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\carulla_{city}_{suc}_{category}_data_{today}.txt',

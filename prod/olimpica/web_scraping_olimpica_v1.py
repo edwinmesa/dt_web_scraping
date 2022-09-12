@@ -87,9 +87,9 @@ def process_data():
     time.sleep(0.02)
 
 
-# Date 
+# Date
 
-today = datetime.date.today()    
+today = datetime.date.today()
 
 # Categories of brands that should be considered for search results
 # categories = ['whisky', 'vino','ron', 'tequila', 'cerveza']
@@ -114,28 +114,38 @@ for city, suc in shops.items():
     # options.set_preference("content.switch.threshold", 250000)
     # options.set_preference("browser.cache.memory.capacity", 65536)
     options.set_preference("general.startup.browser", False)
-    options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+    # Disable reader, we won't need that.
+    options.set_preference("reader.parse-on-load.enabled", False)
     options.set_preference("browser.pocket.enabled", False)
     options.set_preference("loop.enabled", False)
-    options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-    options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-    options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-    options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-    options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-    options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-    options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+    # Text on Toolbar instead of icons
+    options.set_preference("browser.chrome.toolbar_style", 1)
+    # Don't show thumbnails on not loaded images.
+    options.set_preference("browser.display.show_image_placeholders", False)
+    # Don't show document colors.
+    options.set_preference("browser.display.use_document_colors", False)
+    # Don't load document fonts.
+    options.set_preference("browser.display.use_document_fonts", 0)
+    # Use system colors.
+    options.set_preference("browser.display.use_system_colors", True)
+    # Autofill on forms disabled.
+    options.set_preference("browser.formfill.enable", False)
+    # Delete temprorary files.
+    options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
     options.set_preference("permissions.default.image", 2)
-    options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-    options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-    options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+    # Disable tabs, We won't need that.
+    options.set_preference("browser.tabs.forceHide", True)
+    # Disable autofill on URL bar.
+    options.set_preference("browser.urlbar.autoFill", False)
+    # Disable autocomplete on URL bar.
+    options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
     driver = webdriver.Firefox(options=options)
     # driver.set_window_position(900,-50)
     # driver.set_window_size(960, 1050)
     # driver.set_window_size(1500, 1050)
-    driver.set_window_position(2000,0)
+    driver.set_window_position(2000, 0)
     driver.maximize_window()
-    
 
     # Open the Page
     driver.get(f"https://www.olimpica.com/supermercado/licores")
@@ -146,16 +156,16 @@ for city, suc in shops.items():
         By.XPATH, "//div[@class='flex flex-row']//div[@class='css-1pcexqc-container pointer bw1 t-body']", 2)
 
     findElementBy(
-        By.XPATH, f"//div[contains(text(),'{city}')]", 2)  
+        By.XPATH, f"//div[contains(text(),'{city}')]", 2)
 
     findElementBy(
-        By.XPATH, "//div[contains(@class,'flex flex-row pt3')]//div[contains(@class,'css-1pcexqc-container pointer bw1 t-body')]", 2)    
+        By.XPATH, "//div[contains(@class,'flex flex-row pt3')]//div[contains(@class,'css-1pcexqc-container pointer bw1 t-body')]", 2)
 
     findElementBy(
         By.XPATH, f"//div[contains(text(),'{suc}')]", 2)
 
     findElementBy(
-        By.XPATH, "//div[normalize-space()='Elegir']", 2)    
+        By.XPATH, "//div[normalize-space()='Elegir']", 2)
 
     scrollDownFullPage(driver)
 
@@ -184,12 +194,16 @@ for city, suc in shops.items():
                      "location": suc,
                      "category": "Todas",
                      "name": name,
+                     "unit_measure": "",
                      "brand": brand,
                      "price_prime": price_prime,
                      "price_regular": price_regular,
                      "price_now": price_now,
+                     "conditional_discount": "",
+                     "conditional_discount_2": "",
                      "discount": discount,
-                     "date": today})
+                     "date": today
+                     })
 
     df = pd.DataFrame(data)
     df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\olimpica_{city}_{suc}_data_{today}.txt',
