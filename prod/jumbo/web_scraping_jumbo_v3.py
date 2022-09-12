@@ -30,6 +30,13 @@ def findElementTextBySelector(selector, exception):
         element = exception
     return element
 
+def findElementTextByAttribute(selector, exception):
+    try:
+        element = i.find_element(
+            By.CSS_SELECTOR, selector).get_attribute("class")
+    except:
+        element = exception
+    return element  
 
 def findElementNumberBySelector(selector, exception):
     try:
@@ -150,6 +157,8 @@ for category in categories:
             ".tiendasjumboqaio-jumbo-minicart-2-x-cencoListPrice", "0")
         price_now = findElementNumberBySelector(
             ".flex.c-emphasis.tiendasjumboqaio-jumbo-minicart-2-x-cencoPrice", "0")
+        conditional_discount = findElementTextByAttribute(".tiendasjumboqaio-jumbo-minicart-2-x-dto2x3", "")
+        conditional_discount_2 = findElementTextByAttribute(".tiendasjumboqaio-jumbo-minicart-2-x-dto2x1", "")    
         discount = findElementNumberBySelector(
             ".tiendasjumboqaio-jumbo-minicart-2-x-containerPercentageFlag", "0")
 
@@ -162,6 +171,8 @@ for category in categories:
                      "price_prime": price_prime,
                      "price_regular": price_regular,
                      "price_now": price_now,
+                     "conditional_discount": conditional_discount,
+                     "conditional_discount_2": conditional_discount_2,
                      "discount": discount,
                      "date": today})
     df = pd.DataFrame(data)
