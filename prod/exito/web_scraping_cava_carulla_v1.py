@@ -113,9 +113,9 @@ for city, suc in shops.items():
 
         driver = webdriver.Firefox(options=options)
         # driver.set_window_position(900,-50)
-        driver.set_window_position(-50,-50)
+        # driver.set_window_position(-50,-50)
         # driver.set_window_size(960, 1050)
-        # driver.set_window_position(2000,0)
+        driver.set_window_position(2000,0)
         # driver.set_window_position(900,-50)
         # driver.set_window_size(-50, 1050)
         driver.maximize_window()

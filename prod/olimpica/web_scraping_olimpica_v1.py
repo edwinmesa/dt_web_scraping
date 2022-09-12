@@ -130,11 +130,11 @@ for city, suc in shops.items():
     options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
     driver = webdriver.Firefox(options=options)
-    driver.set_window_position(900,-50)
+    # driver.set_window_position(900,-50)
     # driver.set_window_size(960, 1050)
-    driver.set_window_size(1500, 1050)
-    # driver.set_window_position(2000,0)
-    # driver.maximize_window()
+    # driver.set_window_size(1500, 1050)
+    driver.set_window_position(2000,0)
+    driver.maximize_window()
     
 
     # Open the Page

@@ -113,7 +113,7 @@ for city, suc in shops.items():
         options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
 
         driver = webdriver.Firefox(options=options)
-        driver.set_window_position(2000,0)
+        # driver.set_window_position(2000,0)
         driver.maximize_window()
         # driver.set_window_position(900,-50)
         # driver.set_window_size(960, 1050)
@@ -123,10 +123,10 @@ for city, suc in shops.items():
         time.sleep(12)
 
         findElementBy(
-            By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 2)
+            By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 5)
         # Click for city selection
         findElementBy(
-            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 2)
+            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 8)
         # List of cities
         findElementByAndSendKey(
             By.ID, "react-select-2-input", city, 5)
@@ -135,7 +135,7 @@ for city, suc in shops.items():
         findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 15)
 
          # For security reasons, we used twice the function because the page is refresh
-        scrollDownPage(driver, 10)
+        scrollDownPage(driver, 15)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"

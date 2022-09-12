@@ -149,7 +149,7 @@ for city in shops:
             By.XPATH, "//span[@class='dislicoresqa-custom-app-2-x-AgeVerification_a_checkbox_checkmark']", 2)
         # Click button continue
         findElementBy(
-            By.XPATH, "//button[normalize-space()='Continuar']", 5)
+            By.XPATH, "//button[normalize-space()='Continuar']", 10)
 
         scrollDownPage(driver, 5)
         # scrollDownFullPage(driver)
@@ -185,6 +185,8 @@ for city in shops:
         for i in items:
             name = findElementTextBySelector(
                 ".vtex-product-summary-2-x-productBrand.vtex-product-summary-2-x-brandName.t-body", "SIN DESCRIPCION")
+            unit_measure = findElementNumberBySelector(
+                ".vtex-product-summary-2-x-valueWrapper.vtex-product-summary-2-x-valueWrapper--grid.vtex-store-components-3-x-valueWrapper.vtex-product-summary-2-x-skuSelectorItemTextValue.vtex-product-summary-2-x-skuSelectorItemTextValue--grid.vtex-store-components-3-x-skuSelectorItemTextValue.c-on-base.center.pl5.pr5.z-1.t-body", "0")
             brand = findElementTextBySelector(
                 ".vtex-product-summary-2-x-productBrandName", "SIN MARCA")
             price_prime = findElementNumberBySelector(
@@ -193,6 +195,8 @@ for city in shops:
                 ".vtex-store-components-3-x-listPriceValue.ph2.dib.strike.vtex-store-components-3-x-price_listPrice", "0")
             price_now = findElementNumberBySelector(
                 ".vtex-store-components-3-x-sellingPrice.vtex-store-components-3-x-sellingPriceValue.t-heading-2-s.dib.ph2.vtex-store-components-3-x-price_sellingPrice", "0")
+            conditional_discount = findElementTextBySelector(
+                ".dislicoresqa-custom-app-2-x-a_layout.dislicoresqa-custom-app-2-x-a_layout--productSummaryTagsGrid.flex.flex-column.justify-around.items-stretch.h-100.bg-base", "")
             discount = findElementNumberBySelector(
                 ".vtex-store-components-3-x-discountInsideContainer.t-mini.white.absolute.right-0.pv2.ph3.bg-emphasis.z-1", "0")
 
@@ -201,10 +205,12 @@ for city in shops:
                          "location": city,
                          "category": category,
                          "name": name,
+                         "unit_measure": unit_measure,
                          "brand": brand,
                          "price_prime": price_prime,
                          "price_regular": price_regular,
                          "price_now": price_now,
+                         "conditional_discount": conditional_discount,
                          "discount": discount,
                          "date": today
                          })
