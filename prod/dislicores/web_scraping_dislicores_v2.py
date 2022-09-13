@@ -23,6 +23,8 @@ from selenium.webdriver import Firefox
 
 # This function search each element of the document DOM
 
+# pip install webdriver-manager
+# sudo apt install firefox-geckodriver
 
 def findElementTextBySelector(selector, exception):
     try:
