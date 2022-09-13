@@ -1,0 +1,1 @@
+/home/pydev/pyEnv/venv1/bin/python3 /home/pydev/workflow/dt_web_scraping/prod/dislicores/web_scraping_dislicores_v2.py
