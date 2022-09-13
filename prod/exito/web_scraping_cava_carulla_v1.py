@@ -122,14 +122,14 @@ for city, suc in shops.items():
 
         # Open the Page
         driver.get(f"https://cava.carulla.com/vinos-y-licores/{category}")    
-        time.sleep(12)
+        time.sleep(15)
         
         # Selector for age
         findElementBy(
             By.CSS_SELECTOR, ".exito-utils-ui-0-x-buttonConfirmation", 2)
         # Select the geo
         findElementBy(
-            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 2)
+            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 7)
         # List of cities
         findElementByAndSendKey(
             By.ID, "react-select-2-input", city, 4)
