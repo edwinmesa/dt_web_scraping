@@ -23,7 +23,7 @@ from selenium.webdriver import Firefox
 
 # This function search each element of the document DOM
 
-# sudo apt install firefox
+# sudo apt install firefox  
 # pip install webdriver-manager
 # sudo apt install firefox-geckodriver
 
