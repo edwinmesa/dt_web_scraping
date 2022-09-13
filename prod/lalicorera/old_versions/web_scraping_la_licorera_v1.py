@@ -116,9 +116,9 @@ for category in categories:
 
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
-        driver.execute_script('window.scrollBy(0,10)') # scroll by 20 on each iteration
+        driver.execute_script('window.scrollBy(0,15)') # scroll by 20 on each iteration
         height = driver.execute_script("return document.body.scrollHeight") # reset height to the new height after scroll-triggered elements have been loaded.
-        time.sleep(0.01)
+        time.sleep(0.20)
 
     # height = driver.execute_script("return document.body.scrollHeight")
     # for scrol in range(100,height,100):
