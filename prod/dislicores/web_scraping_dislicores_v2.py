@@ -138,7 +138,7 @@ for city in shops:
             findElementBy(
              By.XPATH, "//span[@class='vtex-minicart-2-x-minicartIconContainer gray relative']//*[@class=' ']", 2)
         except:
-            break     
+            pass     
         # ActionChains(driver)
 
         # Click for city selection
@@ -220,7 +220,7 @@ for city in shops:
                          })
 
         df = pd.DataFrame(data)
-        df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\dislicores_{city}_{category}_data_{today}.txt',
+        df.to_csv(f'/home/pydev/workflow/dt_web_scraping/prod/data/dislicores_{city}_{category}_data_{today}.txt',
                   index=False, encoding='utf-8')
 
         time.sleep(1)

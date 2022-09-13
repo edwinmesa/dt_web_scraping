@@ -78,7 +78,7 @@ def scrollDownFullPage(driver):
         driver.execute_script('window.scrollBy(0,20)')
         # reset height to the new height after scroll-triggered elements have been loaded.
         height = driver.execute_script("return document.body.scrollHeight")
-        time.sleep(0.15)
+        time.sleep(0.05)
 
 # Function Beatiful View
 
@@ -148,7 +148,7 @@ for category in categories:
         findElementBy(
             By.CSS_SELECTOR, ".swal2-cancel.swal2-styled", 5)
     except:
-        break
+        pass
 
     scrollDownFullPage(driver)
 
@@ -189,7 +189,7 @@ for category in categories:
                      })
 
     df = pd.DataFrame(data)
-    df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\la_licorera_{category}_data_{today}.txt',
+    df.to_csv(f'/home/pydev/workflow/dt_web_scraping/prod/data/la_licorera_{category}_data_{today}.txt',
               index=False, encoding='utf-8')
 
     time.sleep(1)
