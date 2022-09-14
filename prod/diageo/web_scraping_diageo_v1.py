@@ -138,7 +138,7 @@ for city in shops:
         findElementByAndSendKey(
             By.ID, "ciudadAgeVerification", city, 2)
 
-        scrollDownPage(driver, 15)
+        # scrollDownPage(driver, 15)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
@@ -150,7 +150,7 @@ for city in shops:
         while count <= max_click_SHOW_MORE:
             try:
                 WebDriverWait(driver, 30).until(
-                    EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
+                    EC.visibility_of_element_located((By.XPATH, initial_XPATH)))
                 time.sleep(5)    
                 WebDriverWait(driver, 20).until(
                     EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
