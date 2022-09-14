@@ -220,7 +220,7 @@ for city in shops:
                          })
 
         df = pd.DataFrame(data)
-        df.to_csv(f'/home/pydev/workflow/dt_web_scraping/prod/data/dislicores_{city}_{category}_data_{today}.txt',
+        df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\dislicores_{city}_{category}_data_{today}.txt',
                   index=False, encoding='utf-8')
 
         time.sleep(1)
