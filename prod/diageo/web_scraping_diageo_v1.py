@@ -138,7 +138,7 @@ for city in shops:
         findElementByAndSendKey(
             By.ID, "ciudadAgeVerification", city, 2)
 
-        scrollDownPage(driver, 10)
+        scrollDownPage(driver, 15)
         # scrollDownFullPage(driver)
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
