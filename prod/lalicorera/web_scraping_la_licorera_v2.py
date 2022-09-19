@@ -189,7 +189,7 @@ for category in categories:
                      })
 
     df = pd.DataFrame(data)
-    df.to_csv(f'D:\workflow\dt_web_scraping\prod\data\la_licorera_{category}_data_{today}.txt',
+    df.to_csv(f'/home/edwsar/worflow/dt_web_scraping/prod/data/la_licorera_{category}_data_{today}.txt',
               index=False, encoding='utf-8')
 
     time.sleep(1)
