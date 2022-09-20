@@ -17,9 +17,9 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_exito_v3",
+    dag_id="dag_dt_webscraping_extract_exito_v4",
     default_args=default_args,
-    schedule_interval='10 02 * * *',
+    schedule_interval='10 07 * * *',
 #    dagrun_timeout=timedelta(minutes=5),
     description='extract data scraping for exito',
     start_date=airflow.utils.dates.days_ago(1)
@@ -29,6 +29,6 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_exito',
-    bash_command='/home/edwsar/pyenv/venv3/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/exito/web_scraping_exito_v4.py',
+    bash_command='/home/edwsar/pyenv/venv1/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/exito/web_scraping_exito_v4.py',
     dag=dag_python)
 

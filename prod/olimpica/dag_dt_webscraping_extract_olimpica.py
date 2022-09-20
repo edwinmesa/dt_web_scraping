@@ -17,9 +17,10 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_olimpica_v4",
+    dag_id="dag_dt_webscraping_extract_olimpica_v5",
     default_args=default_args,
-    schedule_interval='30 05 * * *',
+    schedule_interval='00 10 * * *',
+    # schedule_interval='30 05 * * *',
 #    dagrun_timeout=timedelta(minutes=5),
     description='extract data scraping for olimpica',
     start_date=airflow.utils.dates.days_ago(1)

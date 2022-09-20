@@ -17,9 +17,9 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_la_licorera_v3",
+    dag_id="dag_dt_webscraping_extract_la_licorera_v4",
     default_args=default_args,
-    schedule_interval='00 04 * * *',
+    schedule_interval='00 08 * * *',
 #    dagrun_timeout=timedelta(minutes=5),
     description='extract data scraping for la licorera',
     start_date=airflow.utils.dates.days_ago(1)
@@ -29,6 +29,6 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_la_licorera',
-    bash_command='/home/edwsar/pyenv/venv1/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/lalicorera/web_scraping_la_licorera_v2.py',
+    bash_command='/home/edwsar/pyenv/venv3/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/lalicorera/web_scraping_la_licorera_v2.py',
     dag=dag_python)
 

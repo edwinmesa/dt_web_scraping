@@ -17,9 +17,9 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_jumbo_v3",
+    dag_id="dag_dt_webscraping_extract_jumbo_v4",
     default_args=default_args,
-    schedule_interval='06 00 * * *',
+    schedule_interval='06 05 * * *',
 #    dagrun_timeout=timedelta(minutes=5),
     description='extract data scraping for jumbo',
     start_date=airflow.utils.dates.days_ago(1)

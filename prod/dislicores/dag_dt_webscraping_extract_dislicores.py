@@ -17,9 +17,9 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_dislicores_v13",
+    dag_id="dag_dt_webscraping_extract_dislicores_v14",
     default_args=default_args,
-    schedule_interval='30 00 * * *',
+    schedule_interval='30 05 * * *',
 #    dagrun_timeout=timedelta(minutes=5),
     description='extract data scraping for dislicores',
     start_date=airflow.utils.dates.days_ago(1)

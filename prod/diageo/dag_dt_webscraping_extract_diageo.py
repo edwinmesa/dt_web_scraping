@@ -17,9 +17,9 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_diageo_v14",
+    dag_id="dag_dt_webscraping_extract_diageo_v16",
     default_args=default_args,
-    schedule_interval='05 00 * * *',
+    schedule_interval='03 05 * * *',
 #    dagrun_timeout=timedelta(minutes=5),
     description='extract data scraping for diageo',
     start_date=airflow.utils.dates.days_ago(1)

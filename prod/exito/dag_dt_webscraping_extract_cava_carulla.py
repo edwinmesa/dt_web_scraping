@@ -17,9 +17,9 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_cava_carulla_v2",
+    dag_id="dag_dt_webscraping_extract_cava_carulla_v3",
     default_args=default_args,
-    schedule_interval='30 01 * * *',
+    schedule_interval='30 06 * * *',
 #    dagrun_timeout=timedelta(minutes=5),
     description='extract data scraping for cava carulla',
     start_date=airflow.utils.dates.days_ago(1)
@@ -29,6 +29,6 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_cava_carulla',
-    bash_command='/home/edwsar/pyenv/venv2/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/exito/web_scraping_cava_carulla_v1.py',
+    bash_command='/home/edwsar/pyenv/venv4/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/exito/web_scraping_cava_carulla_v1.py',
     dag=dag_python)
 
