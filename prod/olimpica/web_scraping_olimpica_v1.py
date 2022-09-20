@@ -145,8 +145,8 @@ for city, suc in shops.items():
     # driver.set_window_size(960, 1050)
     # driver.set_window_size(1500, 1050)
     driver.set_window_position(2000, 0)
-    driver.set_window_size(1500, 1050)
-    # driver.maximize_window()
+    # driver.set_window_size(1500, 1050)
+    driver.maximize_window()
 
     # Open the Page
     driver.get(f"https://www.olimpica.com/supermercado/licores")
