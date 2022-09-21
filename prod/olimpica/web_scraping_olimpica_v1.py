@@ -70,7 +70,6 @@ def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-
 def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
@@ -166,11 +165,15 @@ for city, suc in shops.items():
         By.XPATH, f"//div[contains(text(),'{suc}')]", 2)
 
     findElementBy(
-        By.XPATH, "//div[normalize-space()='Elegir']", 2)
+        By.XPATH, "//div[normalize-space()='Elegir']", 10)
+
+    scrollDownPage(driver,5)    
 
     scrollDownFullPage(driver)
 
-    time.sleep(150)
+    scrollDownPage(driver,5)
+
+    time.sleep(10)
 
     # Search the elements of the page
     items = driver.find_elements(
