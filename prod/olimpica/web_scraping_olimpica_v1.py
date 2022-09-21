@@ -75,10 +75,10 @@ def scrollDownFullPage(driver):
     height = driver.execute_script("return document.body.scrollHeight")
     for i in range(height):
         # scroll by 10 on each iteration
-        driver.execute_script('window.scrollBy(0,15)')
+        driver.execute_script('window.scrollBy(0,20)')
         # reset height to the new height after scroll-triggered elements have been loaded.
         height = driver.execute_script("return document.body.scrollHeight")
-        time.sleep(0.35)
+        time.sleep(0.05)
 
 # Function Beatiful View
 
@@ -145,8 +145,8 @@ for city, suc in shops.items():
     # driver.set_window_size(960, 1050)
     # driver.set_window_size(1500, 1050)
     driver.set_window_position(2000, 0)
-    # driver.set_window_size(1500, 1050)
-    driver.maximize_window()
+    driver.set_window_size(1200, 1050)
+    # driver.maximize_window()
 
     # Open the Page
     driver.get(f"https://www.olimpica.com/supermercado/licores")
@@ -169,6 +169,8 @@ for city, suc in shops.items():
         By.XPATH, "//div[normalize-space()='Elegir']", 2)
 
     scrollDownFullPage(driver)
+
+    time.sleep(150)
 
     # Search the elements of the page
     items = driver.find_elements(
@@ -210,7 +212,7 @@ for city, suc in shops.items():
     df.to_csv(f'/home/edwsar/worflow/dt_web_scraping/prod/data/olimpica_{city}_{suc}_data_{today}.txt',
               index=False, encoding='utf-8')
 
-    time.sleep(1)
+    time.sleep(10)
     driver.quit()
 
 time.sleep(3)
