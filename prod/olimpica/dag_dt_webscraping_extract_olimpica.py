@@ -17,7 +17,7 @@ default_args = {
 # programmer specific settings
 
 dag_python = DAG(
-    dag_id="dag_dt_webscraping_extract_olimpica_v5",
+    dag_id="dag_dt_webscraping_extract_olimpica_v6",
     default_args=default_args,
     schedule_interval='00 10 * * *',
     # schedule_interval='30 05 * * *',
@@ -30,6 +30,6 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_olimpica',
-    bash_command='/home/edwsar/pyenv/venv1/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/olimpica/web_scraping_olimpica_v1.py',
+    bash_command='/home/edwsar/pyenv/venv2/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/olimpica/web_scraping_olimpica_v1.py',
     dag=dag_python)
 
