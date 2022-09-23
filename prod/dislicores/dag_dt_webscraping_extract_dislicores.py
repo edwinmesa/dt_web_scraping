@@ -29,5 +29,5 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_dislicores',
-    bash_command='/home/edwsar/pyenv/venv3/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/dislicores/web_scraping_dislicores_v2.py',
+    bash_command='/home/edwsar/pyenv/venv3/bin/python3 /home/edwsar/workflow/dt_web_scraping/prod/dislicores/web_scraping_dislicores_v2.py',
     dag=dag_python)

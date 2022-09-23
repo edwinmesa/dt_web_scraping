@@ -212,7 +212,7 @@ for city, suc in shops.items():
                      })
 
     df = pd.DataFrame(data)
-    df.to_csv(f'/home/edwsar/worflow/dt_web_scraping/prod/data/olimpica_{city}_{suc}_data_{today}.txt',
+    df.to_csv(f'/home/edwsar/workflow/dt_web_scraping/prod/data/olimpica_{city}_{suc}_data_{today}.txt',
               index=False, encoding='utf-8')
 
     time.sleep(10)

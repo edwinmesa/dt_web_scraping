@@ -29,6 +29,6 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_jumbo',
-    bash_command='/home/edwsar/pyenv/venv2/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/jumbo/web_scraping_jumbo_v3.py',
+    bash_command='/home/edwsar/pyenv/venv2/bin/python3 /home/edwsar/workflow/dt_web_scraping/prod/jumbo/web_scraping_jumbo_v3.py',
     dag=dag_python)
 

@@ -29,6 +29,6 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_exito',
-    bash_command='/home/edwsar/pyenv/venv1/bin/python3 /home/edwsar/worflow/dt_web_scraping/prod/exito/web_scraping_exito_v4.py',
+    bash_command='/home/edwsar/pyenv/venv1/bin/python3 /home/edwsar/workflow/dt_web_scraping/prod/exito/web_scraping_exito_v4.py',
     dag=dag_python)
 
