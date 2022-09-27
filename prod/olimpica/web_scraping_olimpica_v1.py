@@ -165,7 +165,7 @@ for city, suc in shops.items():
         By.XPATH, f"//div[contains(text(),'{suc}')]", 2)
 
     findElementBy(
-        By.XPATH, "//div[normalize-space()='Elegir']", 10)
+        By.XPATH, "//div[contains(text(),'Elegir')]", 10)
 
     scrollDownPage(driver,5)    
 
