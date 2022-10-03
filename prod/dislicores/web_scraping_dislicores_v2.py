@@ -23,9 +23,10 @@ from selenium.webdriver import Firefox
 
 # This function search each element of the document DOM
 
-# sudo apt install firefox  
+# sudo apt install firefox
 # pip install webdriver-manager
 # sudo apt install firefox-geckodriver
+
 
 def findElementTextBySelector(selector, exception):
     try:
@@ -59,6 +60,7 @@ def findElementByAndSendKey(by, selector, key, t):
     open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
+
 def scrollDownPage(driver, t):
     time.sleep(t)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -75,12 +77,14 @@ def scrollDownFullPage(driver):
 
 # Function Beatiful View
 
+
 def process_data():
     time.sleep(0.02)
 
-# Date 
+# Date
 
-today = datetime.date.today() 
+
+today = datetime.date.today()
 
 # Categories of brands that should be considered for search results
 categories = ['vinos', 'licores', 'tequilas']
@@ -104,28 +108,40 @@ for city in shops:
         # options.set_preference("content.switch.threshold", 250000)
         # options.set_preference("browser.cache.memory.capacity", 65536)
         options.set_preference("general.startup.browser", False)
-        options.set_preference("reader.parse-on-load.enabled", False) # Disable reader, we won't need that.
+        # Disable reader, we won't need that.
+        options.set_preference("reader.parse-on-load.enabled", False)
         options.set_preference("browser.pocket.enabled", False)
         options.set_preference("loop.enabled", False)
-        options.set_preference("browser.chrome.toolbar_style", 1) # Text on Toolbar instead of icons
-        options.set_preference("browser.display.show_image_placeholders", False) # Don't show thumbnails on not loaded images.
-        options.set_preference("browser.display.use_document_colors", False) # Don't show document colors.
-        options.set_preference("browser.display.use_document_fonts", 0) # Don't load document fonts.
-        options.set_preference("browser.display.use_system_colors", True) # Use system colors.
-        options.set_preference("browser.formfill.enable", False) # Autofill on forms disabled.
-        options.set_preference("browser.helperApps.deleteTempFileOnExit", True) # Delete temprorary files.
+        # Text on Toolbar instead of icons
+        options.set_preference("browser.chrome.toolbar_style", 1)
+        # Don't show thumbnails on not loaded images.
+        options.set_preference(
+            "browser.display.show_image_placeholders", False)
+        # Don't show document colors.
+        options.set_preference("browser.display.use_document_colors", False)
+        # Don't load document fonts.
+        options.set_preference("browser.display.use_document_fonts", 0)
+        # Use system colors.
+        options.set_preference("browser.display.use_system_colors", True)
+        # Autofill on forms disabled.
+        options.set_preference("browser.formfill.enable", False)
+        # Delete temprorary files.
+        options.set_preference("browser.helperApps.deleteTempFileOnExit", True)
         options.set_preference("permissions.default.image", 2)
-        options.set_preference("browser.tabs.forceHide", True) # Disable tabs, We won't need that.
-        options.set_preference("browser.urlbar.autoFill", False) # Disable autofill on URL bar.
-        options.set_preference("browser.urlbar.autocomplete.enabled", False) # Disable autocomplete on URL bar.
+        # Disable tabs, We won't need that.
+        options.set_preference("browser.tabs.forceHide", True)
+        # Disable autofill on URL bar.
+        options.set_preference("browser.urlbar.autoFill", False)
+        # Disable autocomplete on URL bar.
+        options.set_preference("browser.urlbar.autocomplete.enabled", False)
 
         driver = webdriver.Firefox(options=options)
         # driver.maximize_window()
         # driver.set_window_position(2000,0)
         # driver.set_window_size(1180, 1000)
-        driver.set_window_position(-50,-50)
-        driver.set_window_size(1500, 1050)
-        # driver.maximize_window()
+        driver.set_window_position(-50, -50)
+        # driver.set_window_size(1500, 1050)
+        driver.maximize_window()
 
         # Open the Page
 
@@ -136,9 +152,9 @@ for city in shops:
         # Click on Modal Window
         try:
             findElementBy(
-             By.XPATH, "//span[@class='vtex-minicart-2-x-minicartIconContainer gray relative']//*[@class=' ']", 2)
+                By.XPATH, "//span[@class='vtex-minicart-2-x-minicartIconContainer gray relative']//*[@class=' ']", 2)
         except:
-            pass     
+            pass
         # ActionChains(driver)
 
         # Click for city selection
@@ -159,7 +175,7 @@ for city in shops:
 
         initial_XPATH = "//div[contains(@class,'vtex-button__label flex items-center justify-center h-100 ph5')]"
         # define the max clicks for page for default 30
-        max_click_SHOW_MORE = 35
+        max_click_SHOW_MORE = 50
         # count the number of clicks
         count = 1
         # This loop search the button load more and apply the click until the end of page
@@ -167,11 +183,10 @@ for city in shops:
             try:
                 WebDriverWait(driver, 30).until(
                     EC.visibility_of_all_elements_located((By.XPATH, initial_XPATH)))
-                time.sleep(5)       
-                WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
-                # to click on No button
+                WebDriverWait(driver, 20).until(
+                    EC.element_to_be_clickable((By.XPATH, initial_XPATH))).click()
                 count += 1
-                time.sleep(2)
+                time.sleep(10)
                 # Bar progress -> comment
                 for i in track(range(4), description=f"[red]Explorando Pagina Web iter {count - 1}.........."):
                     time.sleep(1)
