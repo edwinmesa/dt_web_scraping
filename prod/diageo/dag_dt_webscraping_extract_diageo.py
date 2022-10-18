@@ -30,6 +30,6 @@ dag_python = DAG(
 
 t1 = BashOperator(
     task_id='webscraping_extract_diageo',
-    bash_command='/home/edwsar/pyenv/venv1/bin/python3 /home/edwsar/workflow/dt_web_scraping/prod/diageo/web_scraping_diageo_v1.py',
+    bash_command='/home/pydev/pyenv/venv1/bin/python3 /home/pydev/workflow/dt_web_scraping/prod/diageo/web_scraping_diageo_v1.py',
     dag=dag_python)
 

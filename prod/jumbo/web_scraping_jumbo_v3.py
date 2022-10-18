@@ -178,7 +178,7 @@ for category in categories:
                      "date": today
                      })
     df = pd.DataFrame(data)
-    df.to_csv(f'/home/edwsar/workflow/dt_web_scraping/prod/data/jumbo_medellin_{category}_data_{today}.txt',
+    df.to_csv(f'/home/pydev/workflow/dt_web_scraping/prod/data/jumbo_medellin_{category}_data_{today}.txt',
               index=False, encoding='utf-8')
     time.sleep(1)
     driver.quit()

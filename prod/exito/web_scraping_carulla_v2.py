@@ -196,7 +196,7 @@ for city, suc in shops.items():
                         })
 
         df = pd.DataFrame(data)
-        df.to_csv(f'/home/edwsar/workflow/dt_web_scraping/prod/data/carulla_{city}_{suc}_{category}_data_{today}.txt',
+        df.to_csv(f'/home/pydev/workflow/dt_web_scraping/prod/data/carulla_{city}_{suc}_{category}_data_{today}.txt',
                 index=False, encoding='utf-8')
 
         time.sleep(1)
