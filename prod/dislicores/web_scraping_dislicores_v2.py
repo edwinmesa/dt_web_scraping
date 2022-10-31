@@ -159,13 +159,13 @@ for city in shops:
 
         # Click for city selection
         findElementBy(
-            By.XPATH, "//div[@class=' css-mqam1g']", 2)
+            By.XPATH, "//div[@class=' css-1fvtkye']", 2)
         # Select City
         findElementBy(
             By.XPATH, "//div[@id='react-select-2-option-9']", 2)
         # Click Box
         findElementBy(
-            By.XPATH, "//span[@class='dislicoresqa-custom-app-2-x-AgeVerification_a_checkbox_checkmark']", 2)
+            By.XPATH, "//span[@class='dislicoresqa-custom-app-2-x-m_custom_age_verification__checkbox mr3 ']", 2)
         # Click button continue
         findElementBy(
             By.XPATH, "//button[normalize-space()='Continuar']", 10)
