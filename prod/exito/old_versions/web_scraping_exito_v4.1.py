@@ -10,7 +10,6 @@ from rich.progress import track
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementClickInterceptedException, TimeoutException
@@ -53,11 +52,9 @@ def findElementBy(by, selector, t):
 
 def findElementByAndSendKey(by, selector, key, t):
     open_modal = driver.find_element(by, selector)
-    actions = ActionChains(driver)
-    actions.move_to_element(open_modal)
-    actions.click()
-    time.sleep(t)
-    actions.key_down(Keys.SPACE).send_keys(key).key_up(Keys.CONTROL).perform()
+    open_modal.click()
+    open_modal.send_keys(key)
+    open_modal.send_keys(Keys.TAB)
     time.sleep(t)
 
 
@@ -151,19 +148,18 @@ for city, suc in shops.items():
         else:
             driver.get(f"https://www.exito.com/mercado/vinos-y-licores/{category}")
 
-        time.sleep(10)
+        time.sleep(20)
 
-        # try select the bar if not pass
-        try:
-            findElementBy(
-                By.XPATH, "//span[@class='exito-geolocation-3-x-addressResultLabel']", 2)
-        except:
-            pass        
-
+        findElementBy(
+            By.XPATH, "//div[@class='exito-geolocation-3-x-contentOrderOption flex']//div[1]", 2)
+        # Click for city selection
+        findElementBy(
+            By.CSS_SELECTOR, ".exito-geolocation-3-x-orderOptionsButton.orderoption-compra-recoge", 5)
+        # List of cities
         findElementByAndSendKey(
-            By.CSS_SELECTOR, ".exito-geolocation-3-x-pickUpPointCitySelectCity.shippingaddress-lista-ciudad", city, 5)
+            By.ID, "react-select-2-input", city, 5)
         findElementByAndSendKey(
-            By.CSS_SELECTOR, ".exito-geolocation-3-x-pickUpPointCitySelectCity.buycollect-lista-almacen", suc, 2)
+            By.ID, "react-select-4-input", suc, 2)
         findElementBy(By.XPATH, "//button[normalize-space()='Confirmar']", 15)
 
         # For security reasons, we used twice the function because the page is refresh
