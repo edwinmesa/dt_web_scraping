@@ -151,7 +151,7 @@ for city, suc in shops.items():
         else:
             driver.get(f"https://www.exito.com/mercado/vinos-y-licores/{category}")
 
-        time.sleep(10)
+        time.sleep(20)
 
         # try select the bar if not pass
         try:
