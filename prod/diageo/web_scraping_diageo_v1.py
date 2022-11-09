@@ -125,18 +125,23 @@ for city in shops:
         time.sleep(10)
 
         # Click on Modal Window
+        # findElementBy(
+        #     By.XPATH, "//*[@id='btn-si']", 1)
         findElementBy(
-            By.XPATH, "//*[@id='btn-si']", 1)
+            By.XPATH, f"//button[normalize-space()='{city}']", 3)
 
         findElementBy(
-            By.CSS_SELECTOR, "#termsAndConditions", 2)
+            By.XPATH, "//button[normalize-space()='Si, soy mayor de edad']", 5)    
+
+        # findElementBy(
+        #     By.CSS_SELECTOR, "#termsAndConditions", 2)
         
         # Click for city selection
-        findElementBy(
-            By.XPATH, "//select[@id='ciudadAgeVerification']", 2)
+        # findElementBy(
+        #     By.XPATH, "//select[@id='ciudadAgeVerification']", 2)
         # Select City
-        findElementByAndSendKey(
-            By.ID, "ciudadAgeVerification", city, 2)
+        # findElementByAndSendKey(
+        #     By.ID, "ciudadAgeVerification", city, 2)
 
         # scrollDownPage(driver, 15)
         # scrollDownFullPage(driver)
