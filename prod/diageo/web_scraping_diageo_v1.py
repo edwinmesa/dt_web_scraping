@@ -131,7 +131,7 @@ for city in shops:
             By.XPATH, f"//button[normalize-space()='{city}']", 3)
 
         findElementBy(
-            By.XPATH, "//button[normalize-space()='Si, soy mayor de edad']", 5)    
+            By.XPATH, "//button[normalize-space()='Si, soy mayor de 18 años']", 5)    
 
         # findElementBy(
         #     By.CSS_SELECTOR, "#termsAndConditions", 2)
